@@ -1,2 +1,2 @@
 # SPDTransNet
-Repository for the SPDTransNet model, a Transformer-based architecture to analyze sequences of SPD matrices without loss of their Riemannian structure, and said model's SP-MHA (or Structure-Preserving Multihead Attention) component.)
+Placeholder repository, should be fully online on the 14th of September, 2023 at 2 p.m. CEST (UTC+2) at the very latest.
