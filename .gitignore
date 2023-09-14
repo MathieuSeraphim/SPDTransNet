@@ -11,8 +11,6 @@
 /_2_data_preprocessing/_2_2_data_extraction/*_extracted/
 /_2_data_preprocessing/_2_4_preprocessed_data/
 /_5_execution/_5_1_runs_analysis/output/
-/_z_miscellaneous/svd_backpropagation_test/tmp_logs/
-/_z_miscellaneous/standalone_tests/means_and_standard_deviation_of_covariance_matrices_and_statistic_vectors.json
 /_z_miscellaneous/standalone_tests/get_distribution_of_eigenvectors*
 !/_z_miscellaneous/standalone_tests/get_distribution_of_eigenvectors.py
 /error_tensors/
