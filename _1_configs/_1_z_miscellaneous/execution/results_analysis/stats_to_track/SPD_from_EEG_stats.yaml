@@ -1,0 +1,20 @@
+validation:
+  - mf1
+  - macro_acc
+  - standard_acc
+  - kappa
+  - f1_N3
+  - f1_N2
+  - f1_N1
+  - f1_REM
+  - f1_Awake
+test:
+  - mf1
+  - macro_acc
+  - standard_acc
+  - kappa
+  - f1_N3
+  - f1_N2
+  - f1_N1
+  - f1_REM
+  - f1_Awake

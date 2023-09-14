@@ -1,0 +1,22 @@
+class_path: _4_models.BaseModel.BaseModel
+init_args:
+  loss_function_config_dict:
+    name: cross_entropy
+  class_labels_list:
+    - N3
+    - N2
+    - N1
+    - REM
+    - Awake
+  learning_rate: 0.0001
+  optimisation_config_dict:
+    optimizer:
+      class_path: torch.optim.Adam
+      extra_kwargs:
+        betas: [0.9, 0.999]
+        eps: 1.0e-07
+        weight_decay: 1.0e-05
+    scheduler:
+      class_path: torch.optim.lr_scheduler.ExponentialLR
+      extra_kwargs:
+        gamma: 0.94

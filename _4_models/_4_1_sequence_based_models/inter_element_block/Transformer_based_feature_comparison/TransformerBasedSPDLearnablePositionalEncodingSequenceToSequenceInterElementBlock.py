@@ -1,0 +1,12 @@
+from _4_models._4_1_sequence_based_models.inter_element_block.Transformer_based_feature_comparison.non_spd_blocks.TransformerBasedLearnablePositionalEncodingSequenceToSequenceInterElementBlock import \
+    TransformerBasedLearnablePositionalEncodingSequenceToSequenceInterElementBlock
+from _4_models._4_1_sequence_based_models.intra_element_block.Transformer_based_feature_extraction.layers.SPDTransformerEncoderLayer import \
+    SPDTransformerEncoderLayer
+
+
+class TransformerBasedSPDLearnablePositionalEncodingSequenceToSequenceInterElementBlock(TransformerBasedLearnablePositionalEncodingSequenceToSequenceInterElementBlock):
+
+    def __init__(self):
+        super(TransformerBasedSPDLearnablePositionalEncodingSequenceToSequenceInterElementBlock, self).__init__()
+        self.transformer_encoder = SPDTransformerEncoderLayer()
+

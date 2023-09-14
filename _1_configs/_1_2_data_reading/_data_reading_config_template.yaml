@@ -1,0 +1,5 @@
+wrapper:
+  data_reader:
+    class_path: _3_data_management._3_1_data_readers.BaseDataReader.BaseDataReader
+    init_args:
+      preprocessing_config_file: _preprocessing_config_template.yaml

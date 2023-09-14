@@ -1,0 +1,95 @@
+learning_rate:
+  type: loguniform
+  args: [1.e-6, 5.e-4]
+number_of_intra_epoch_encoder_heads:
+  type: categorical
+  args: [3, 9]
+number_of_intra_epoch_encoder_layers:
+  type: int
+  args: [4, 6]
+number_of_inter_epoch_encoder_heads:
+  type: categorical
+  args: [3, 9]
+number_of_inter_epoch_encoder_layers:
+  type: int
+  args: [4, 6]
+fully_connected_intermediary_dimension:
+  type: categorical
+  args: [253, 528, 1035, 2016]
+final_linear_projection_to_given_vector_size:
+  type: categorical
+  args: [ 351, 378 ]
+number_of_epoch_wise_feature_vectors:
+  type: categorical
+  args: [ 1, 3, 5, 7, 10 ]
+CONDITIONAL:
+  - item: intra_epoch_encoder_feedforward_dimension
+    path_if_nested: null
+    path_to_condition: final_linear_projection_to_given_vector_size
+    condition_value: 325
+    type: null
+    args:
+      - 990
+  - item: inter_epoch_encoder_feedforward_dimension
+    path_if_nested: null
+    path_to_condition: final_linear_projection_to_given_vector_size
+    condition_value: 325
+    type: null
+    args:
+      - 990
+  - item: intra_epoch_encoder_feedforward_dimension
+    path_if_nested: null
+    path_to_condition: final_linear_projection_to_given_vector_size
+    condition_value: 351
+    type: null
+    args:
+      - 1035
+  - item: inter_epoch_encoder_feedforward_dimension
+    path_if_nested: null
+    path_to_condition: final_linear_projection_to_given_vector_size
+    condition_value: 351
+    type: null
+    args:
+      - 1035
+  - item: intra_epoch_encoder_feedforward_dimension
+    path_if_nested: null
+    path_to_condition: final_linear_projection_to_given_vector_size
+    condition_value: 378
+    type: null
+    args:
+      - 1128
+  - item: inter_epoch_encoder_feedforward_dimension
+    path_if_nested: null
+    path_to_condition: final_linear_projection_to_given_vector_size
+    condition_value: 378
+    type: null
+    args:
+      - 1128
+  - item: intra_epoch_encoder_feedforward_dimension
+    path_if_nested: null
+    path_to_condition: final_linear_projection_to_given_vector_size
+    condition_value: 406
+    type: null
+    args:
+      - 1225
+  - item: inter_epoch_encoder_feedforward_dimension
+    path_if_nested: null
+    path_to_condition: final_linear_projection_to_given_vector_size
+    condition_value: 406
+    type: null
+    args:
+      - 1225
+  - item: intra_epoch_encoder_feedforward_dimension
+    path_if_nested: null
+    path_to_condition: final_linear_projection_to_given_vector_size
+    condition_value: 435
+    type: null
+    args:
+      - 1326
+  - item: inter_epoch_encoder_feedforward_dimension
+    path_if_nested: null
+    path_to_condition: final_linear_projection_to_given_vector_size
+    condition_value: 435
+    type: null
+    args:
+      - 1326

@@ -1,0 +1,6 @@
+wrapper:
+  preprocessor:
+    class_path: _2_data_preprocessing._2_3_preprocessors.BasePreprocessor.BasePreprocessor
+    init_args:
+      dataset_name: "test"
+      transformation_configuration_name: "empty_folder"

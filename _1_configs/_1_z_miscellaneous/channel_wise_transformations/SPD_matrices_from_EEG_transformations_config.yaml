@@ -1,0 +1,8 @@
+channel_wise_transformations:
+  no_transformation: [ none, null ]
+  delta_band_filtering: [ bandpass_filtering, [ 0.5, 4 ] ]
+  theta_band_filtering: [ bandpass_filtering, [ 4, 8 ] ]
+  alpha_band_filtering: [ bandpass_filtering, [ 8, 13 ] ]
+  low_beta_band_filtering: [ bandpass_filtering, [ 13, 22 ] ]
+  high_beta_band_filtering: [ bandpass_filtering, [ 22, 30 ] ]
+  gamma_band_filtering: [ bandpass_filtering, [ 30, 45 ] ]

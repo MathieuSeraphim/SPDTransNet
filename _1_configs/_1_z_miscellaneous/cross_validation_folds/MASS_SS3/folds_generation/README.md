@@ -1,0 +1,1 @@
+idx_MASS.npy from https://github.com/gist-ailab/IITNet-official/tree/main/split_idx

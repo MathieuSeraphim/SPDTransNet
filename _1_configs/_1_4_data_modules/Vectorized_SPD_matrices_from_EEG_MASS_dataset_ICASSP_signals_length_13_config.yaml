@@ -1,0 +1,23 @@
+class_path: _3_data_management._3_2_data_modules.SPD_matrices_from_EEG_signals.VectorizedSPDFromEEGDataModule.VectorizedSPDFromEEGDataModule
+init_args:
+  dataset_config_file: Vectorized_SPD_matrices_from_EEG_MASS_dataset_ICASSP_signals_config.yaml
+  batch_size: 64
+  cross_validation_fold_index: 11
+  extra_epochs_on_each_side: 6
+  signal_preprocessing_strategy: z_score_normalization
+  channel_wise_transformations_config_file: SPD_matrices_from_EEG_transformations_config.yaml
+  channel_wise_transformations_as_hyphenated_list: no_transformation-delta_band_filtering-theta_band_filtering-alpha_band_filtering-low_beta_band_filtering-high_beta_band_filtering-gamma_band_filtering
+  covariance_estimator: cov
+  statistic_vectors_for_matrix_augmentation_as_hyphenated_list: psd
+  transfer_recording_wise_matrices: true
+  rebalance_training_set_by_oversampling: true
+  clip_test_set_recordings_by_amount: 24
+  dataloader_num_workers: 8
+  use_recording_wise_simple_covariances: false
+  no_covariances: false
+  random_seed: 42
+  run_identifier: default
+  augmentation_factor: 1.
+  matrix_multiplication_factor: 1.
+  svd_singular_value_minimum: null
+  save_in_single_file: false

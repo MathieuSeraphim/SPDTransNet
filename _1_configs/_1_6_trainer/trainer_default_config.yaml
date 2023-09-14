@@ -1,0 +1,27 @@
+logger:
+    - class_path: pytorch_lightning.loggers.TensorBoardLogger
+      init_args:
+          save_dir: .
+          name: lightning_logs
+          version: null
+          log_graph: true
+enable_checkpointing: true
+callbacks:
+  - class_path: pytorch_lightning.callbacks.EarlyStopping
+    init_args:
+      monitor: mf1/validation
+      min_delta: 0
+      patience: 20
+      verbose: false
+      mode: max
+  - class_path: pytorch_lightning.callbacks.ModelCheckpoint
+    init_args:
+      monitor: mf1/validation
+      mode: max
+      save_top_k: 1
+gpus: 1
+auto_select_gpus: true
+track_grad_norm: 2
+check_val_every_n_epoch: 1
+val_check_interval: 0.125
+max_time: 00:19:30:00

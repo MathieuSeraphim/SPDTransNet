@@ -1,0 +1,54 @@
+wrapper:
+  preprocessor:
+    class_path: _2_data_preprocessing._2_3_preprocessors.SPD_matrices_from_EEG_signals.SPDFromEEGPreprocessor.SPDFromEEGPreprocessor
+    init_args:
+      dataset_name: MASS_SS3
+      transformation_configuration_name: ICASSP_signals
+    dict_kwargs:
+      eeg_signals:
+        - F3
+        - F4
+        - C3
+        - C4
+        - T3
+        - T4
+        - O1
+        - O2
+      labels:
+        - N3
+        - N2
+        - N1
+        - REM
+        - Awake
+      epoch_length_in_seconds: 30
+      number_of_subdivisions_per_epoch: 30
+      signal_preprocessing_strategies:
+        - raw_signals
+        - z_score_normalization
+      channel_wise_transformations_config_file: SPD_matrices_from_EEG_transformations_config.yaml
+      channel_wise_transformations_list:
+        - no_transformation
+        - delta_band_filtering
+        - theta_band_filtering
+        - alpha_band_filtering
+        - low_beta_band_filtering
+        - high_beta_band_filtering
+        - gamma_band_filtering
+      covariance_estimators:
+        - cov
+        - oas
+      signal_statistics_as_vectors:
+        - psd
+        - mean
+        - max_minus_min
+      include_epoch_eeg_signals: false
+      compute_recording_mean_matrices: true
+      compute_recording_covariance_matrices: true
+      include_recording_eeg_signals: false
+      compute_recording_matrices_no_covariance: true
+      random_seed: 42
+      multiprocessing: false
+      prior_config_file: null
+    
+    
+  

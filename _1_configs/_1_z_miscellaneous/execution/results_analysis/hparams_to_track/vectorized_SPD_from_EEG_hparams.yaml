@@ -1,0 +1,31 @@
+model:
+  - loss_function_config_dict/name
+  - final_linear_projection_to_given_vector_size
+  - number_of_intra_epoch_encoder_heads
+  - number_of_intra_epoch_encoder_layers
+  - number_of_epoch_wise_feature_vectors
+  - number_of_inter_epoch_encoder_heads
+  - number_of_inter_epoch_encoder_layers
+  - fully_connected_intermediary_dimension
+  - learning_rate
+datamodule:
+  - cross_validation_fold_index
+  - covariance_estimator
+  - augmentation_factor
+  - matrix_multiplication_factor
+  - svd_singular_value_minimum
+order:
+  - cross_validation_fold_index
+  - covariance_estimator
+  - augmentation_factor
+  - matrix_multiplication_factor
+  - svd_singular_value_minimum
+  - learning_rate
+  - final_linear_projection_to_given_vector_size
+  - number_of_intra_epoch_encoder_heads
+  - number_of_intra_epoch_encoder_layers
+  - number_of_epoch_wise_feature_vectors
+  - number_of_inter_epoch_encoder_heads
+  - number_of_inter_epoch_encoder_layers
+  - fully_connected_intermediary_dimension
+  - loss_function_config_dict/name

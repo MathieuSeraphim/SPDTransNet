@@ -1,0 +1,17 @@
+hparams_to_track_file: vectorized_SPD_from_EEG_hparams.yaml
+best_run_stats_to_track_file: SPD_from_EEG_stats.yaml
+other_inputs:
+  monitor: mf1
+  test_output_name: ""
+  log_folders_location: .
+  lightning_log_folder_name: lightning_logs
+  skip_runs_with_mf1_under_value: 0.5
+  run_on_test_set: true
+  rerun_on_validation_set: false
+  trainer_config_file: trainer_default_config.yaml
+  trainer_config_modifications_as_dict:
+    logger_logs_folder_name: test_logs
+  override_batch_size_with_value: null
+  save_confusion_matrices: true
+  restart_at_run_name: null
+  ignore_prefix: null

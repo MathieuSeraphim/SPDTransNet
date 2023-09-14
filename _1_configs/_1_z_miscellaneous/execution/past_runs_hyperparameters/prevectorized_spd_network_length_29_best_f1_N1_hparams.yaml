@@ -1,0 +1,75 @@
+model:
+  class_path: _4_models._4_1_sequence_based_models.VectorizedSPDFromEEGSuccessiveChannelsTransformerModel.VectorizedSPDFromEEGSuccessiveChannelsTransformerModel
+  init_args:
+    loss_function_config_dict:
+      name: cross_entropy_with_label_smoothing
+    class_labels_list:
+    - N3
+    - N2
+    - N1
+    - REM
+    - Awake
+    number_of_eeg_signals: 8
+    number_of_channels: 7
+    extra_epochs_on_each_side: 14
+    number_of_subdivisions_per_epoch: 30
+    matrix_augmentation_size: 1
+    final_linear_projection_to_given_vector_size: 351
+    number_of_intra_epoch_encoder_heads: 9
+    intra_epoch_encoder_feedforward_dimension: 1035
+    intra_epoch_encoder_dropout_rate: 0.1
+    number_of_intra_epoch_encoder_layers: 5
+    number_of_inter_epoch_encoder_heads: 3
+    inter_epoch_encoder_feedforward_dimension: 1035
+    inter_epoch_encoder_dropout_rate: 0.1
+    number_of_inter_epoch_encoder_layers: 5
+    fully_connected_intermediary_dimension: 253
+    fully_connected_dropout_rate: 0.1
+    learning_rate: 2.483868642869633e-05
+    number_of_epoch_wise_feature_vectors: 5
+    optimisation_config_dict:
+      optimizer:
+        class_path: torch.optim.Adam
+        extra_kwargs:
+          betas:
+          - 0.9
+          - 0.999
+          eps: 1.0e-07
+          weight_decay: 1.0e-05
+      scheduler:
+        class_path: torch.optim.lr_scheduler.ExponentialLR
+        extra_kwargs:
+          gamma: 0.94
+    data_formatting_block:
+      class_path: _4_models._4_1_sequence_based_models.data_formatting_block.SPD_from_EEG_data_reformatting.VectorizedSPDFromEEGDataMultichannelSuccessionReformattingBlock.VectorizedSPDFromEEGDataMultichannelSuccessionReformattingBlock
+    intra_element_block:
+      class_path: _4_models._4_1_sequence_based_models.intra_element_block.Transformer_based_feature_extraction.TransformerBasedSPDSequenceToSmallerFeaturesSequenceIntraElementBlock.TransformerBasedSPDSequenceToSmallerFeaturesSequenceIntraElementBlock
+    inter_element_block:
+      class_path: _4_models._4_1_sequence_based_models.inter_element_block.Transformer_based_feature_comparison.TransformerBasedSPDLearnablePositionalEncodingSequenceToSequenceInterElementBlock.TransformerBasedSPDLearnablePositionalEncodingSequenceToSequenceInterElementBlock
+    classification_block:
+      class_path: _4_models._4_1_sequence_based_models.classification_block.classification_from_sequence_central_feature.CentralGroupOfFeaturesInSequenceClassificationBlock.CentralGroupOfFeaturesInSequenceClassificationBlock
+datamodule:
+  class_path: _3_data_management._3_2_data_modules.SPD_matrices_from_EEG_signals.VectorizedSPDFromEEGDataModule.VectorizedSPDFromEEGDataModule
+  init_args:
+    dataset_config_file: Vectorized_SPD_matrices_from_EEG_MASS_dataset_ICASSP_signals_config.yaml
+    batch_size: 16
+    cross_validation_fold_index: 11
+    extra_epochs_on_each_side: 14
+    signal_preprocessing_strategy: z_score_normalization
+    channel_wise_transformations_config_file: SPD_matrices_from_EEG_transformations_config.yaml
+    channel_wise_transformations_as_hyphenated_list: no_transformation-delta_band_filtering-theta_band_filtering-alpha_band_filtering-low_beta_band_filtering-high_beta_band_filtering-gamma_band_filtering
+    covariance_estimator: cov
+    statistic_vectors_for_matrix_augmentation_as_hyphenated_list: psd
+    transfer_recording_wise_matrices: true
+    rebalance_training_set_by_oversampling: true
+    clip_test_set_recordings_by_amount: 24
+    dataloader_num_workers: 8
+    no_covariances: false
+    use_recording_wise_simple_covariances: false
+    get_epoch_eeg_signals: false
+    random_seed: 42
+    run_identifier: default
+    augmentation_factor: 6.192168743657496
+    matrix_multiplication_factor: 10.0
+    svd_singular_value_minimum: null
+    save_in_single_file: true

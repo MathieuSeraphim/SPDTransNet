@@ -1,0 +1,39 @@
+augmentation_factor:
+  type: loguniform
+  args: [0.1, 1.e3]
+matrix_multiplication_factor:
+  type: categorical
+  args:
+    - 1.
+    - 1.01
+    - 10.
+    - 10.01
+CONDITIONAL:
+  - item: svd_singular_value_minimum
+    path_if_nested: null
+    path_to_condition: matrix_multiplication_factor
+    condition_value: 1.
+    type: null
+    args:
+      - null
+  - item: svd_singular_value_minimum
+    path_if_nested: null
+    path_to_condition: matrix_multiplication_factor
+    condition_value: 1.01
+    type: null
+    args:
+      - 1.e-2
+  - item: svd_singular_value_minimum
+    path_if_nested: null
+    path_to_condition: matrix_multiplication_factor
+    condition_value: 10.
+    type: null
+    args:
+      - null
+  - item: svd_singular_value_minimum
+    path_if_nested: null
+    path_to_condition: matrix_multiplication_factor
+    condition_value: 10.01
+    type: null
+    args:
+      - 1.e-1

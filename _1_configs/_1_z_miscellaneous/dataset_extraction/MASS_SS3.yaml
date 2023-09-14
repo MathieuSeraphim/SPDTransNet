@@ -1,0 +1,36 @@
+epoch_duration_in_seconds: 30
+dataset_groundtruth_to_our_groundtruth:
+  "W": 4  # Awake
+  "R": 3  # REM
+  "1": 2  # N1
+  "2": 1  # N2
+  "3": 0  # N3
+electrodes_to_reject:
+  - EEG A2-LER
+  - EMG Chin1
+  - EMG Chin2
+  - EMG Chin3
+  - ECG ECGI
+electrodes_to_conserve_include:
+  - Fp1
+  - Fp2
+  - F3
+  - F4
+  - F7
+  - F8
+  - C3
+  - C4
+  - T3
+  - T4
+  - T5
+  - T6
+  - O1
+  - O2
+  - P3
+  - P4
+  - Fz
+  - Pz
+  - Cz
+  - Oz
+  - EOG L
+  - EOG R

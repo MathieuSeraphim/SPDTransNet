@@ -1,0 +1,20 @@
+wrapper:
+  dataset:
+    class_path: _3_data_management._3_2_data_modules.SPD_matrices_from_EEG_signals.datasets.StandardVectorizedSPDFromEEGDataset.StandardVectorizedSPDFromEEGDataset
+    init_args:
+      eeg_signals:
+        - F3
+        - F4
+        - C3
+        - C4
+        - T3
+        - T4
+        - O1
+        - O2
+      labels:
+        - N3
+        - N2
+        - N1
+        - REM
+        - Awake
+      data_reader_config_file: SPD_matrices_from_EEG_config.yaml
