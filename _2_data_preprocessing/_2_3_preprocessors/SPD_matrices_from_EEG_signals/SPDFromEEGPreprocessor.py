@@ -16,6 +16,11 @@ from _2_data_preprocessing._2_3_preprocessors.SPD_matrices_from_EEG_signals.util
 class SPDFromEEGPreprocessor(BasePreprocessor):
 
     def __init__(self, dataset_name: str, **kwargs):
+        r"""
+        :param dataset_name: The name of the dataset folder in the folder _2_2_data_extraction.
+        :param kwargs: the "transformation_configuration_name" found in the config file. Defines the name of the save
+         folder within the folder _2_4_preprocessed_data.
+        """
         self.number_of_signals = None
         self.list_of_signals = None
         self.number_of_classes = None
@@ -53,6 +58,50 @@ class SPDFromEEGPreprocessor(BasePreprocessor):
                                        compute_recording_matrices_no_covariance: bool = False,
                                        random_seed: int = 42, multiprocessing: bool = False,
                                        prior_config_file: Union[str, None] = None):
+        r"""
+        Method to apply a preprocessing configuration to the class.
+        :param eeg_signals: list of the names of the used signals (i.e. post-extraction keys). Order matters!
+        :param labels: list of class labels, corresponding to the extracted "hypno" signal. Order matters!
+        :param epoch_length_in_seconds: 30 for the AASM standard.
+        :param number_of_subdivisions_per_epoch: number of segments into which each epoch is divided, without overlap -
+         i.e. the number of matrices computed per epoch, amongst other things. Usually 30.
+        :param signal_preprocessing_strategies: either "raw_signals", "z_score_normalization", or both - i.e. whether or
+         not the signals are normalized prior to transformation and matrix computation. Normalization usually leads to
+         better results.
+        :param channel_wise_transformations_config_file: the .yaml file containing a dict of channel-wise
+         transformations (i.e. either nothing or band-pass filtering).
+        :param channel_wise_transformations_list: the labels of the chosen transformations within the aforementioned
+         .yaml file.
+        :param covariance_estimators: "cov", "oas", "mcd" or any combination of those (see function
+         batch_windowed_signal_to_covariance_matrices in utils.py). "cov" is the standard covariance matrix computation,
+         "oas" is the Oracle Approximating Shrinkage covariance estimator, and "mcd" is the Fast MinCovDet estimator.
+         In our experience, "cov" and "oas" are pretty much equivalent in performance, while "mcd" takes forever to
+         compute and performs the poorest.
+        :param signal_statistics_as_vectors: "psd", "mean", "max_minus_min" or any combination of those (see function
+         batch_windowed_signal_to_statistic_vectors in utils.py). The statistic vectors used alone or in combination in
+         the matrix augmentation operation, computed over each signal in an epoch subdivision. "psd" (i.e. the average
+         Power Spectral Density) performs the best, despite being proportional to the variance of the signal, already
+         captured within the covariance matrices' diagonal.
+        :param include_epoch_eeg_signals: include the original (potentially normalized and/or filtered) EEG signal in
+         each epoch's .pkl output. VERY costly in memory usage, due to data duplication
+         (e.g. times 14 for 7 channels and 2 strategies).
+        :param compute_recording_mean_matrices: recording-wise matrices for whitening, saved in a separate .pkl file.
+         Computed using the component matrices' affine invariant estimated mean. Preferred method for whitening.
+        :param compute_recording_covariance_matrices: recording-wise matrices for whitening, saved in a separate .pkl
+         file. Computed by taking the covariance matrix over the entire recording; equivalent to taking the component
+         matrices' Euclidean mean. Better than no whitening, but worse than the affine invariant mean.
+        :param include_recording_eeg_signals: same thing as include_epoch_eeg_signals, but recording-wise. Duplicates
+         the signal again.
+        :param compute_recording_matrices_no_covariance: for both recording-wise matrices above, compute the same but
+         with non-diagonal elements of the component matrices set to zero. Used for confirming the relevance of the
+          covariance information (in opposition to the signal-wise variance information found in the diagonal).
+        :param random_seed: used in some covariance matrix estimators.
+        :param multiprocessing: whether or not recordings are being preprocessed in parallel.
+        :param prior_config_file: should you want to modify some, but not all, of the preprocessing done on a given
+         dataset, add the prior preprocessing configuration file name here. Fields present in both will not be
+          deleted or re-computed. To preserve the prior configuration, save a copy of it with another name or elsewhere
+          before rerunning the preprocessing.
+        """
         assert not self.__initialization_arguments_parsed
 
         self.number_of_signals = len(eeg_signals)
@@ -103,9 +152,7 @@ class SPDFromEEGPreprocessor(BasePreprocessor):
 
         self.__initialization_arguments_parsed = True
 
-    # Progressively deeper dicts for data storage
-    # Use _z_miscellaneous.standalone_tests.nested_dicts_and_lists_exploration.recursive_exploration_from_pickle_file
-    # on the output to see the structure in details
+    # Useable in multiprocessing mode
     def preprocess(self, recording_ids_list: Union[List[int], None] = None):
         assert self.__initialization_arguments_parsed
         super(SPDFromEEGPreprocessor, self).preprocess()
@@ -130,6 +177,9 @@ class SPDFromEEGPreprocessor(BasePreprocessor):
         for process in processes_list:
             process.join()
 
+    # Progressively deeper dicts for data storage
+    # Use _z_miscellaneous.standalone_tests.nested_dicts_and_lists_exploration.recursive_exploration_from_pickle_file
+    # on the output to see the structure in details
     def per_recording_preprocessing(self, recording_id: int, verbose: bool = True):
         recording_pickle_filepath = self.list_of_recording_pickle_filepaths[recording_id]
         recording_name = basename(recording_pickle_filepath)[:-4]

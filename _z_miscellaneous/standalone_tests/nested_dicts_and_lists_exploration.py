@@ -54,5 +54,5 @@ def pretty_print_recursive_exploration(recursive_exploration_output: Union[List,
 
 if __name__ == "__main__":
     # pass
-    filename = "/home/seraphi211/pipeline/_z_miscellaneous/standalone_tests/0000_Awake.pkl"
+    filename = "your_file_path_here.pkl"  # Either an absolute path, or a path relative to the location of execution.
     pretty_print_recursive_exploration(recursive_exploration_from_pickle_file(filename))
