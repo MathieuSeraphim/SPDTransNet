@@ -16,7 +16,7 @@ by [Mathieu Seraphim](https://orcid.org/0000-0002-9367-1190), [Paul Dequidt](htt
 Conference CAIP 2023, Cyprus (in press - Accepted Manuscript [here](https://lechervy.users.greyc.fr/publi/C/publi_pdf/caip23.pdf)).  
 Other references can be found in this repository's main paper.
 
-**Important:** Due to space constraints, some specifics were left out of the paper. To selectively read the relevant
+**Important:** due to space constraints, some specifics were left out of the paper. To selectively read the relevant
 sections, please prioritize sections [marked with an asterisk](#documentation), as well as the similarly marked
 subsections within them.  
 A spreadsheet with our model's results (as summarized in the paper) can be found [here](./_z_miscellaneous/documentation/extras/ICASSP%20runs.xlsx).
