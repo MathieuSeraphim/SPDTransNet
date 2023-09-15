@@ -127,14 +127,14 @@ default, both are applied sequentially to our 1s subwindow-derived matrices, wit
 
 Given a covariance matrix $C \in SPD(n)$ and any matrix $V_{\alpha} \in \mathbb{R}^{n \times k}$, $k \geq 1$, we can
 compute the corresponding augmented matrix $A$:
-\[A = \left(\begin{array}{c|c}
+$$A = \left(\begin{array}{c|c}
     \\
     C+V_{\alpha} \cdot V_{\alpha}^T&V_{\alpha}\\
     \\
     \hline
     V_{\alpha}^T&I_k\\
     \end{array}\right)
-\in SPD(n+k) \]
+\in SPD(n+k) $$
 
 In our work, we set $V_{\alpha} = V \times \alpha$, with $\alpha \in \mathbb{R}$ being the augmentation factor
 controlling for the prominence of a given augmentation matrix $V$ within our augmented matrix.  
