@@ -1,5 +1,4 @@
 from typing import Union
-
 import torch
 from torch.nn import Module
 from _4_models.utils import matrix_log
