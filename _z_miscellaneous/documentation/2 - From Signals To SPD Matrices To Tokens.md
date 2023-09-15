@@ -150,7 +150,20 @@ matrix out of multiple concatenated statistic vectors.*
 
 <h4 id="whitening" style="text-align: center;">SPD Matrix Whitening*</h4>
 
+Given $M, G \in SPD(m)$, with $M$ a subwindow-derived matrix and $G$ the corresponding recording-wise matrix encoding
+said recording's specificities, we remove these specificities from $M$ using the following whitening operation (cf.
+[Barachant et al.](https://doi.org/10.1016/j.neucom.2012.12.039)):  
+$$M' = G^{-1/2} M G^{-1/2}$$  
+with $M' \in SPD(m)$.
+
+If the subwindow-derived matrices have been augmented with one or more statistic vectors, we augment the recording-wise
+matrices with their corresponding recording-wise mean statistic vectors.
+
 <h3 id="tokenization" style="text-align: center;">Tokenization*</h3>
+
+<h4 id="svd" style="text-align: center;">Matrix Logarithm Implementation & SVD</h4>
+
+<h4 id="cutoff" style="text-align: center;">SVD cutoff*</h4>
 
 [//]: # (Cutoff)
 
