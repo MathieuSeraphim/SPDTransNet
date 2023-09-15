@@ -47,7 +47,7 @@ current_script_directory = dirname(realpath(__file__))
 
 for recording_indices in recording_indices_full_list:
     for multiplier in multipliers:
-        output_folder = join(current_script_directory, "get_distribution_of_eigenvectors_times_%d" % multiplier)
+        output_folder = join(current_script_directory, "get_distribution_of_eigenvalues_times_%d" % multiplier)
     
         unwhitened_matrices_already_processed = {}
         for key in covariance_estimators_list:
