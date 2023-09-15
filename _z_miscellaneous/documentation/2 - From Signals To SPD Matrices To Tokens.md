@@ -127,6 +127,7 @@ default, both are applied sequentially to our 1s subwindow-derived matrices, wit
 
 Given a covariance matrix $C \in SPD(n)$ and any matrix $V_{\alpha} \in \mathbb{R}^{n \times k}$, $k \geq 1$, we can
 compute the corresponding augmented matrix $A$:
+
 $$
 A = \left(\begin{array}{c|c}
     \\
