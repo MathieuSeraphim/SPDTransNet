@@ -120,7 +120,7 @@ In this section, we call $SPD(n)$ the set of $n \times n$ SPD matrices.
 Both the following operations are optional.  
 As seen in [the Preprocessing Pipeline section above](#preprocessing), by
 default, both are applied sequentially to our 1s subwindow-derived matrices, with:
-- the PSD vector as statistic matrix ($k$ = 1),
+- the PSD vector as the augmentation matrix $V$ ($k$ = 1),
 - the recording-wise Affine invariant mean matrix as whitening matrix.
 
 <h4 id="augmentation" style="text-align: center;">SPD Matrix Augmentation*</h4>
@@ -139,9 +139,14 @@ A = \left(\begin{array}{c|c}
 \in SPD(n+k)
 $$
 
+The proof af the augmented matrix's positive-definiteness can be found [here](./extras/Proof%20of%20Post-Augmentation%20Positive-Definiteness.pdf).
+
 In our work, we set $V_{\alpha} = V \times \alpha$, with $\alpha \in \mathbb{R}$ being the augmentation factor
 controlling for the prominence of a given augmentation matrix $V$ within our augmented matrix.  
 This augmentation factor is a model hyperparameter (cf. [here](./3%20-%20Formatting%20The%20Model%20Inputs.md)).
+
+*Note: although we only use a single vector as statistic matrix, you can parameterize the code to build an augmentation
+matrix out of multiple concatenated statistic vectors.*
 
 <h4 id="whitening" style="text-align: center;">SPD Matrix Whitening*</h4>
 
