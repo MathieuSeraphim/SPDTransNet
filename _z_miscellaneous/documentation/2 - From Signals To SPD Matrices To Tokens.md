@@ -58,7 +58,16 @@ and/or `DataReader` class.
 
 <h2 style="text-align: center;">Preprocessing Pipeline*</h2>
 
-[//]: # (Signal-to-SPD)
+The `SPDFromEEGPreprocessor` class first applies transformations to the original extracted signals. It then subdivides
+them into epoch subwindows, and computes covariance matrices (and potentially statistic vectors, for augmentation
+purposes - see [next Section](#spd_processing)) for each subwindow.
+Finally, it may also compute recording-wise matrices (and vectors) for whitening purposes (see 
+[next Section](#spd_processing)).
+
+It is designed to potentially compute and save multiple configurations in `.pkl` files (see ), so that the wanted configuration may be
+requested on-the-fly during hyperparameter researches.
+
+Signal transformations
 
 <h2 id="spd_processing" style="text-align: center;">SPD Data Processing*</h2>
 

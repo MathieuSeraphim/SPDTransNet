@@ -69,6 +69,25 @@ a timeseries of $S$ = 30 SPD matrices of size 9 $\times$ 9 over $C$ = 7 channels
 [after preprocessing](./_z_miscellaneous/documentation/2%20-%20From%20Signals%20To%20SPD%20Matrices%20To%20Tokens.md)
 (cf. figure).
 
+<h3 id="caveats" style="text-align: center;">Our results</h3>
+
+| \# | Model                                                                             | MF1                  | Macro Acc.           | N1 F1                | Valid. metric | Token dim. $d(m)$ | \# Feat. Tokens $t$ |
+|--- |-----------------------------------------------------------------------------------|----------------------|----------------------|----------------------|---------------|-------------------|---------------------|
+| 1  | [DeepSleepNet](https://github.com/akaraspt/deepsleepnet)                          | 78.14 $\pm$ 4.12     | 80.05 $\pm$ 3.47     | 53.52 $\pm$ 8.24     | N/A           | N/A               | N/A                 |
+| 2  | [IITNet](https://github.com/gist-ailab/IITNet-official)                           | 78.48 $\pm$ 3.15     | 81.88 $\pm$ 2.89     | 56.01 $\pm$ 6.54     | N/A           | N/A               | N/A                 |
+| 3  | [GraphSleepNet](https://github.com/ziyujia/GraphSleepNet)                         | 75.58 $\pm$ 3.75     | 79.75 $\pm$ 3.41     | 50.80 $\pm$ 8.06     | N/A           | N/A               | N/A                 |
+| 4  | [Dequidt et al.](https://link.springer.com/chapter/10.1007/978-3-031-34344-5_30)  | 81.04 $\pm$ 3.26     | 82.59 $\pm$ 3.45     | 58.42 $\pm$ 6.09     | N/A           | N/A               | N/A                 |
+| 5  | [Seraphim et al.](https://lechervy.users.greyc.fr/publi/C/publi_pdf/caip23.pdf)   | 79.78 $\pm$ 4.56     | 81.76 $\pm$ 4.61     | 58.43 $\pm$ 6.41     | MF1           | Concatenation     | 1                   |
+| 6  | SPDTransNet, $L=13$                                                               | 81.06 $\pm$ 3.49     | **84.87** $\pm$ 2.47 | 60.39 $\pm$ 6.77     | MF1           | 351 ($m = 26$)    | 7                   |
+| 7  | SPDTransNet, $L=21$                                                               | **81.24** $\pm$ 3.29 | 84.40 $\pm$ 2.61     | **60.50** $\pm$ 6.18 | MF1           | 351 ($m = 26$)    | 10                  |
+| 8  | SPDTransNet, $L=29$                                                               | 80.83 $\pm$ 3.40     | 84.29 $\pm$ 2.65     | 60.35 $\pm$ 6.01     | N1 F1         | 351 ($m = 26$)    | 5                   |
+
+The reported results for models from the literature differ from those published by the original authors, as we
+re-trained their models using our methodology.  
+A more detailed account of our results can be found [here](./_z_miscellaneous/documentation/extras/ICASSP%20runs.xlsx).
+
+More information in the paper.
+
 <h3 id="caveats" style="text-align: center;">A few caveats</h3>
 
 In this repository, the term "epoch" may be used in two contexts:
@@ -121,7 +140,7 @@ This folder contains a `.pkl` file for every epoch in the dataset (> 58000).
 
 1. Run the model for training using [the appropriate BASH script](./_6_bash_scripts/_6_1_local_execution/bash_one_run_full_spd_best_mf1_length_21.sh)
 31 times sequentially, e.g. through the command `bash bash_one_run_full_spd_best_mf1_length_21.sh [X]`,
-substituting `X` with every integer from 0 to 30; or run
+substituting `[X]` with every integer from 0 to 30; or run
 [the corresponding SLURM script](./_6_bash_scripts/_6_2_slurm_execution/slurm_all_folds_full_spd_best_mf1_length_21.sl)
 once. This should generate the `lightning_logs` [folder](./lightning_logs) at the project root, as well as a log folder
 within called  `version_[X]`. This will also create a folder called `tmp_vectorized_data` (if it doesn't already exist),
@@ -131,7 +150,7 @@ as well as `.zip` files that will be automatically deleted if the run terminates
 [the corresponding SLURM script](./_6_bash_scripts/_6_2_slurm_execution/slurm_runs_analysis.sl).
 4. This should generate the `test_logs` folder at the project root, which may safely be deleted after the program ends.
 Same thing for `tmp_vectorized_data`, which should be re-generated as before.
-5. The `output` [folder](./_5_execution/_5_1_runs_analysis/output) should be generated within the `5_1_runs_analysis`
+5. The `output` [folder](./_5_execution/_5_1_runs_analysis/output) should be generated within the `_5_1_runs_analysis`
 [directory](./_5_execution/_5_1_runs_analysis). It should contain the `runs_analysis.csv` file, containing the computed
 metrics on all folds and corresponding hyperparameters, as well as the `confusion_matrices` folder, containing `.png`
 images of confusion matrices on the test set. To prevent any overrides, be sure to rename or move these elements before
