@@ -276,9 +276,4 @@ def batch_vectors_euclidean_mean(vectors: np.ndarray):
     return mean_vector
 
 
-
-
-
-
-
     
