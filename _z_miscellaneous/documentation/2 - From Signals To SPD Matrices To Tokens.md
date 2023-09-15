@@ -126,7 +126,8 @@ default, both are applied sequentially to our 1s subwindow-derived matrices, wit
 <h4 id="augmentation" style="text-align: center;">SPD Matrix Augmentation*</h4>
 
 Given a covariance matrix $C \in SPD(n)$ and any matrix $V_{\alpha} \in \mathbb{R}^{n \times k}$, $k \geq 1$, we can
-compute the corresponding augmented matrix $A$:  
+compute the corresponding augmented matrix $A$:
+
 $$
 A = \left(\begin{array}{c|c}
     \\
@@ -163,7 +164,7 @@ matrices with their corresponding recording-wise mean statistic vectors.
 As stated in the paper, one can bijectively map an SPD matrix onto the corresponding vector space of symmetric matrices,
 by using the logarithmic map $log_{mat}(\cdot)$.  
 This mapping onto the manifold's tangent space is used to define the so-called LogEuclidean metrics:  
-$$\delta_{LE}\_\*^P(A, B) =  \lVert log(P^{-1/2}AP^{-1/2}) - log(P^{-1/2}BP^{-1/2}) \rVert\_\*$$  
+$$\delta_{LE}\_\*^P(A, B) =  \lVert log(P^{-1/2}AP^{-1/2}) - log(P^{-1/2}BP^{-1/2}) \rVert_*$$  
 with $A, B, P \in SPD(m)$, $P$ the center of projection onto the tangent space, and $\lVert \cdot \rVert_*$ a Euclidean
 norm on the set of $m \times m$ symmetric matrices $Sym(m)$ (of dimension $d(m) = \frac{m(m+1)}{2}$).
 
@@ -171,7 +172,7 @@ The tokenization process uses this logarithmic map to bijectively represent matr
 vectors) of $\mathbb{R}^{d(m)}$, with Euclidean operations on the tokens equivalent to LogEuclidean operations on the
 matrices (cf. paper).
 
-In the paper, we use $P = \mathbb{I}_m$, and $\lVert \cdot \rVert_\* = \lVert \cdot \rVert_2$ the $\mathcal{L}_2$ norm
+In the paper, we use $P = \mathbb{I}\_m$, and $\lVert \cdot \rVert\_\* = \lVert \cdot \rVert_2$ the $\mathcal{L}_2$ norm
 applied to the tokens.  
 Note that, assuming the matrices have been [whitened](#whitening), the used LogEuclidean metric is equivalent to having
 $P =  G$ as the unwhitened matrices' center of projection.
