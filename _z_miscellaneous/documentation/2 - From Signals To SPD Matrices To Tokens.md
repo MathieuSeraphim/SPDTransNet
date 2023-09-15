@@ -56,7 +56,7 @@ The data structure within the generated `.pkl` being somewhat complex, it is adv
 them through the `nested_dicts_and_lists_exploration.py` script (above) before modifying or creating a `Preprocessor`
 and/or `DataReader` class.
 
-<h2 if="preprocessing" style="text-align: center;">Preprocessing Pipeline*</h2>
+<h2 id="preprocessing" style="text-align: center;">Preprocessing Pipeline*</h2>
 
 The `SPDFromEEGPreprocessor` class first applies transformations to the original extracted signals. It then subdivides
 them into epoch subwindows, and computes covariance matrices (and potentially statistic vectors, for augmentation
