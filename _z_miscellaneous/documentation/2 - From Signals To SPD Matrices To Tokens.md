@@ -179,12 +179,58 @@ $P =  G$ as the unwhitened matrices' center of projection.
 
 <h4 id="svd" style="text-align: center;">Matrix Logarithm Implementation & SVD</h4>
 
-<h4 id="cutoff" style="text-align: center;">SVD cutoff*</h4>
+Computing the matrix logarithm requires the computation of the eigenvectors and eigenvalues of our matrices.
+To ensure stability, as matrix augmentation might sometimes yield very slightly negative eigenvalues in some cases
+due to computational errors.  
+In previous iterations, we tried to make the augmentation factor mentioned [above](#augmentation) a hyperparameter,
+which required the computation of the SVD's derivative for backpropagation. This operation being unstable, we
+implemented a stable approximation of this operation using Taylor series. Despite that, the augmentation factor did
+not significantly deviate from its initialization value, prompting us to abandon this approach.  
 
-[//]: # (Cutoff)
+The custom backpropagation is still implemented in the `[ROOT]/_4_models/utils.py`
+[Python file](../../_4_models/utils.py).
 
+<h4 id="cutoff" style="text-align: center;">SVD Thresholding*</h4>
 
+Lhe logarithmic mapping is applied to our matrices by diagonalizing the matrix, taking its eigenvalues' logarithm, and
+recomposing a matrix by way of the eigenvectors.
+By the nature of this operation, any eigenvalue that is very close to 0 would be overblown by this operation. Hence,
+if a covariance matrix at a given time for a given channel would've been Symmetric Positive Semi-Definite if not for
+some random noise, the eigenvalue(s) associated with this noise would see their relative importance greatly increased
+post-mapping.
 
+To study this phenomenon, the `get_distribution_of_eigenvalues.py`
+[standalone Python script](../standalone_tests/get_distribution_of_eigenvalues.py) can be used to generate a
+histogram-based visualization of the distribution of our matrices' eigenvalues.
 
+Here's an example of the results, for the standard covariance estimator and matrices built from un-filtered,
+z-scored-normalized signals, and in different states of whitening:
 
+![Unwhitened matrices' eigenvalue distribution](./extras/distribution_of_eigenvectors_in_MASS_SS3_covariance_matrices/channel_0/estimator_cov/unwhitened.png) | ![Whitened matrices' eigenvalue distribution - inferior whitening](./extras/distribution_of_eigenvectors_in_MASS_SS3_covariance_matrices/channel_0/estimator_cov/whitened_using_simple_recording_wise_covariance_matrices.png) | ![Whitened matrices' eigenvalue distribution - superior whitening](./extras/distribution_of_eigenvectors_in_MASS_SS3_covariance_matrices/channel_0/estimator_cov/whitened_using_affine_invariant_average_of_recording_matrices.png)
+:------------------------------------------------------------------------------------------------------------------------------------------------------------:|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:
+ No whitening                                                                                                                                                 | Whitening through recording-wise covariance matrices                                                                                                                                                                           | Whitening through the affine invariant mean of the recording's matrices
 
+The area under the curve for a given interval on the horizontal axis corresponds to the proportion of the dataset's matrix
+eigenvalues found within said interval.  
+For the sake of legibility, only the lower 95% of eigenvalues are displayed here.
+
+In order to better understand what is happening, here is the same data, after taking the eigenvalues' base 10 logarithm
+(with 100% of them represented, this time):
+
+![Unwhitened matrices' logged eigenvalue distribution](./extras/distribution_of_eigenvectors_in_MASS_SS3_covariance_matrices/channel_0/estimator_cov/log_unwhitened.png) | ![Whitened matrices' logged eigenvalue distribution - inferior whitening](./extras/distribution_of_eigenvectors_in_MASS_SS3_covariance_matrices/channel_0/estimator_cov/log_whitened_using_simple_recording_wise_covariance_matrices.png) | ![Whitened matrices' logged eigenvalue distribution - superior whitening](./extras/distribution_of_eigenvectors_in_MASS_SS3_covariance_matrices/channel_0/estimator_cov/log_whitened_using_affine_invariant_average_of_recording_matrices.png)
+:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------:|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:
+ No whitening                                                                                                                                                            | Whitening through recording-wise covariance matrices                                                                                                                                                                                      | Whitening through the affine invariant mean of the recording's matrices
+
+While a deep analysis of the curves' shape is out of the scope of the present repository, note that for our default
+whitening methodology (the column on the right), we observe that while the vast majority of eigenvalues are greater than
+$10^{-1}$ (or -1 in log scale), eigenvalues exist with their value lower than $10^{-4}$ (or -4 in log scale).
+
+As such, we have added a thresholding option to our logarithmic mapping, setting all eigenvalues smaller than a chosen
+cutoff value $\epsilon$ to the value $\epsilon$.  
+In parallel, we have introduced a matrix multiplicative factor $\beta$, which can be applied to all matrices
+post-whitening, essentially shifting the logarithmic curves above to the right and lessening the influence of
+non-thresholded but small eigenvalues.
+
+The cutoff value $\epsilon$ and the matrix multiplicative factor $\beta$ are both network hyperparameters
+(cf. [here](./3%20-%20Formatting%20The%20Model%20Inputs.md)).  
+More eigenvalue distribution curves can be found [here](./extras/distribution_of_eigenvectors_in_MASS_SS3_covariance_matrices).

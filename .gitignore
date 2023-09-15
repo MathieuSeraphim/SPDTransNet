@@ -11,7 +11,7 @@
 /_2_data_preprocessing/_2_2_data_extraction/*_extracted/
 /_2_data_preprocessing/_2_4_preprocessed_data/
 /_5_execution/_5_1_runs_analysis/output/
-/_z_miscellaneous/standalone_tests/get_distribution_of_eigenvectors*
-!/_z_miscellaneous/standalone_tests/get_distribution_of_eigenvectors.py
+/_z_miscellaneous/standalone_tests/get_distribution_of_eigenvalues.py
+!/_z_miscellaneous/standalone_tests/get_distribution_of_eigenvalues.py
 /error_tensors/
 /tmp_vectorized_data*/
