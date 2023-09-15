@@ -164,8 +164,8 @@ matrices with their corresponding recording-wise mean statistic vectors.
 As stated in the paper, one can bijectively map an SPD matrix onto the corresponding vector space of symmetric matrices,
 by using the logarithmic map $log_{mat}(\cdot)$.  
 This mapping onto the manifold's tangent space is used to define the so-called LogEuclidean metrics:  
-$$\delta_{LE}\_\*^P(A, B) =  \lVert log(P^{-1/2}AP^{-1/2}) - log(P^{-1/2}BP^{-1/2}) \rVert_*$$  
-with $A, B, P \in SPD(m)$, $P$ the center of projection onto the tangent space, and $\lVert \cdot \rVert_*$ a Euclidean
+$$\delta_{LE}\_\*^P(A, B) =  \lVert log(P^{-1/2}AP^{-1/2}) - log(P^{-1/2}BP^{-1/2}) \rVert\_*$$  
+with $A, B, P \in SPD(m)$, $P$ the center of projection onto the tangent space, and $\lVert \cdot \rVert_\*$ a Euclidean
 norm on the set of $m \times m$ symmetric matrices $Sym(m)$ (of dimension $d(m) = \frac{m(m+1)}{2}$).
 
 The tokenization process uses this logarithmic map to bijectively represent matrices in $SPD(m)$ as tokens (i.e.
