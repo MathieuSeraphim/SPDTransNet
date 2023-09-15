@@ -139,7 +139,7 @@ A = \left(\begin{array}{c|c}
 \in SPD(n+k)
 $$
 
-The proof af the augmented matrix's positive-definiteness can be found [here](./extras/Proof%20of%20Post-Augmentation%20Positive-Definiteness.pdf).
+The proof of the augmented matrix's positive-definiteness can be found [here](./extras/Proof%20of%20Post-Augmentation%20Positive-Definiteness.pdf).
 
 In our work, we set $V_{\alpha} = V \times \alpha$, with $\alpha \in \mathbb{R}$ being the augmentation factor
 controlling for the prominence of a given augmentation matrix $V$ within our augmented matrix.  
