@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# An example SLURM submission file to generate the test set results on all folds using trained model weights
+# An example Slurm submission file to generate the test set results on all folds using trained model weights
 # Made for the French national supercomputer Jean Zay
 
 # Account used (may be removed in some circumstances)

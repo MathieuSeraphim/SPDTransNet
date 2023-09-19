@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# An example SLURM submission file to run a hyperparameter research
+# An example Slurm submission file to run a hyperparameter research
 # Made for the French national supercomputer Jean Zay
 
 # Account used (may be removed in some circumstances)

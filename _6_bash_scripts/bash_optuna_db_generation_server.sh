@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# The database creation script, as used on a SLURM-enabled remote server
+# The database creation script, as used on a Slurm-enabled remote server
 # Made for the French national supercomputer Jean Zay
 
 # Loading execution environment

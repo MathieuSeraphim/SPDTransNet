@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # An example BASH script to train our model with existing hyperparameters on a single fold
-# All other SLURM scripts may be adapted in this way for local use
-# As all our runs were done through SLURM, we gave not developed scripts for local sequential or multi-GPU usage
+# All other Slurm scripts may be adapted in this way for local use
+# As all our runs were done through Slurm, we gave not developed scripts for local sequential or multi-GPU usage
 
 # The fold index will be either the first passed argument, or 11
 fold=${1:-11}

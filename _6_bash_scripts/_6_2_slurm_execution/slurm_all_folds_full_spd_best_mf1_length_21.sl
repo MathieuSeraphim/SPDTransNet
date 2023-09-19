@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# An example SLURM submission file to train the model on all folds, using existing hyperparameters
+# An example Slurm submission file to train the model on all folds, using existing hyperparameters
 # Made for the French national supercomputer Jean Zay
 
 # Account used (may be removed in some circumstances)

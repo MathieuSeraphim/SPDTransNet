@@ -106,16 +106,18 @@ The following instructions should be sufficient to reproduce the results present
 see the [further documentation](#documentation) linked below.  
 Please note that [the MASS dataset](http://ceams-carsm.ca/en/mass/) is only available upon demand.
 
-This repository was built for mono-GPU usage on a remote server managed using SLURM. Examples of execution scripts can
-be found [here](./_6_bash_scripts), and need to be adapted to suit your situation.  
-Keep in mind that the folder to store SLURM output and error files must most likely be manually created prior to running
-the SLURM scripts.  
-All Python scripts should be run from the repository's root, or you risk breaking imports. The execution scripts linked
+This repository was built for mono-GPU usage on a remote server managed using [Slurm](https://slurm.schedmd.com/documentation.html).
+Examples of execution scripts can be found [here](./_6_bash_scripts), and **need to be adapted** to suit your situation.  
+All Python scripts should be run from the repository's root, or you riFsk breaking imports. The execution scripts linked
 above can be run from anywhere.
+
+*Note: our script stores Slurm output and error files in a dedicated `[ROOT]/log` folder, which **must** be manually
+created prior to running the Slurm scripts if you are using an older version of the tool.  
+This step is no longer necessary [for Slurm versions 23.02](https://stackoverflow.com/a/54487158) or above.*
 
 <h3 style="text-align: center;">Python environment</h3>
 
-This repository was built with PyTorch and PyTorch Lightning.
+This repository was built with [PyTorch 1.11](https://pytorch.org/docs/1.11/) and [PyTorch Lightning 1.9.5](https://lightning.ai/docs/pytorch/1.9.5/).
 
 It has been tested with Python versions 3.8.10 and 3.9.12, with the full list of used libraries available
 [here](./_z_miscellaneous/documentation/tested_environments).  
@@ -129,27 +131,27 @@ Compatibility with other versions of the presented libraries is not guaranteed.
 It should be named `MASS_SS3`, and contain all `* Base.edf` and `* PSG.edf` files for all 62 subjects - numbered from
 `01-03-0001` to `01-03-0064`. Subjects 43 and 49 should be missing; that is normal.
 2. Directly run the `MASS_extraction.py` [Python script](./_2_data_preprocessing/_2_2_data_extraction/_extraction_scripts/MASS_extraction.py),
- or [the corresponding SLURM script](./_6_bash_scripts/_6_2_slurm_execution/slurm_run_extraction_MASS_SS3.sl). This 
+ or [the corresponding Slurm script](./_6_bash_scripts/_6_2_slurm_execution/slurm_run_extraction_MASS_SS3.sl). This 
 should generate the `MASS_SS3_extracted` [folder](./_2_data_preprocessing/_2_2_data_extraction/MASS_SS3_extracted)
 in the appropriate [location](./_2_data_preprocessing/_2_2_data_extraction), containing 62 `.pkl` files.
 3. Directly run the `SPDFromEEGPreprocessor.py` [Python script](./_2_data_preprocessing/_2_3_preprocessors/SPD_matrices_from_EEG_signals/SPDFromEEGPreprocessor.py),
- or [the corresponding SLURM script](./_6_bash_scripts/_6_2_slurm_execution/slurm_run_preprocessing_MASS_SS3.sl). This
+ or [the corresponding Slurm script](./_6_bash_scripts/_6_2_slurm_execution/slurm_run_preprocessing_MASS_SS3.sl). This
 should generate the `_2_4_preprocessed_data` directory (if it doesn't exist), as well as the `MASS_SS3_dataset_with_ICASSP_signals_config`
 [folder](./_2_data_preprocessing/_2_4_preprocessed_data/MASS_SS3_dataset_with_ICASSP_signals_config) folder therein.
 This folder contains a `.pkl` file for every epoch in the dataset (> 58000).
 
-<h3 style="text-align: center;">Reproducing our results</h3>
+<h3 id="reproducing_results" style="text-align: center;">Reproducing our results</h3>
 
 1. Run the model for training using [the appropriate BASH script](./_6_bash_scripts/_6_1_local_execution/bash_one_run_full_spd_best_mf1_length_21.sh)
 31 times sequentially, e.g. through the command `bash bash_one_run_full_spd_best_mf1_length_21.sh [X]`,
 substituting `[X]` with every integer from 0 to 30; or run
-[the corresponding SLURM script](./_6_bash_scripts/_6_2_slurm_execution/slurm_all_folds_full_spd_best_mf1_length_21.sl)
+[the corresponding Slurm script](./_6_bash_scripts/_6_2_slurm_execution/slurm_all_folds_full_spd_best_mf1_length_21.sl)
 once. This should generate the `lightning_logs` [folder](./lightning_logs) at the project root, as well as a log folder
 within called  `version_[X]`. This will also create a folder called `tmp_vectorized_data` (if it doesn't already exist),
 as well as `.zip` files that will be automatically deleted if the run terminates without error.
 2. When all training runs have ended, the `tmp_vectorized_data` [folder](./tmp_vectorized_data) may be safely deleted.
 3. Directly run the `command_line_tester.py` [Python script](./command_line_tester.py), or
-[the corresponding SLURM script](./_6_bash_scripts/_6_2_slurm_execution/slurm_runs_analysis.sl).
+[the corresponding Slurm script](./_6_bash_scripts/_6_2_slurm_execution/slurm_runs_analysis.sl).
 4. This should generate the `test_logs` folder at the project root, which may safely be deleted after the program ends.
 Same thing for `tmp_vectorized_data`, which should be re-generated as before.
 5. The `output` [folder](./_5_execution/_5_1_runs_analysis/output) should be generated within the `_5_1_runs_analysis`
@@ -164,11 +166,11 @@ it from `lightning_logs`.
 
 <h3 style="text-align: center;">From hyperparameter research to final results</h3>
 
-This is similar to the above instructions, with the following changes:
+This is similar to the [above](#reproducing_results) instructions, with the following changes:
 - Before step 1, generate the `[ROOT]/db/database.db` [file](./db/database.db) necessary for the hyperparameter research
 by running the appropriate BASH script (for [local execution](./_6_bash_scripts/bash_optuna_db_generation_local.sh)
-or on a [SLURM server](./_6_bash_scripts/bash_optuna_db_generation_server.sh)).
-- In step 1, run [the hyperparameter research SLURM script](./_6_bash_scripts/_6_2_slurm_execution/slurm_hparam_research_full_spd_length_21.sl),
+or on a [Slurm server](./_6_bash_scripts/bash_optuna_db_generation_server.sh)).
+- In step 1, run [the hyperparameter research Slurm script](./_6_bash_scripts/_6_2_slurm_execution/slurm_hparam_research_full_spd_length_21.sl),
 or a local equivalent (not provided here). This should run a total of 50 runs oo fold 11, with a maximum of 5 running at
 any moment.
 - Once the search is finished, substitute contents of the current
@@ -176,14 +178,15 @@ any moment.
 with the contents of the file `[ROOT]/lightning_logs/version_[X}/hparams.yaml`, with `[X]` the index of the run yielding
 the highest validation MF1, as seen in `runs_analysis.csv`. Be sure to set the hyperparameter `save_in_single_file` to
 `true`.
-- Repeat the steps of the section above.
+- Repeat the steps in the section [above](#reproducing_results).
 
 **IMPORTANT:** unlike in the above section, temporary data is stored in separate files within the `tmp_vectorized_data`
 folder during hyperparameter research, as opposed to a single `.zip` files. This is way faster, but generates large
 amounts of files (more than 50000 per simultaneous run). This behavior is controlled by the `save_in_single_file`
 hyperparameter mentioned above.  
 As files systems usually have a limit to the amount of files allowed to exist at one given time, this behavior can be
-a limiting factor in terms of amount of simultaneous runs possible.
+a limiting factor in terms of amount of simultaneous runs possible.  
+If this aspect causes issues, please refer to [the relevant documentation](./_z_miscellaneous/documentation/3%20-%20Formatting%20The%20Model%20Inputs.md#tmp_storage).
 
 <h2 id="documentation" style="text-align: center;">Further Documentation*</h2>
 

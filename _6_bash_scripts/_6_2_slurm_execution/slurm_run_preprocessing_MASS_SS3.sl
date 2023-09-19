@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# An example SLURM submission file to apply the preprocessing to the extracted MASS SS3 dataset
+# An example Slurm submission file to apply the preprocessing to the extracted MASS SS3 dataset
 # Made for the French national supercomputer Jean Zay
 
 # Account used (may be removed in some circumstances)

@@ -111,7 +111,7 @@ These operations were done within the model itself, but the corresponding PyTorc
 [layers](../../_3_data_management/_3_2_data_modules/SPD_matrices_from_EEG_signals/layers) have been shifted to the data
 management portion of the architecture, running only during the network initialization.  
 As said layers don't currently contain trainable network parameters, this doesn't cause issue.
-The implementation of this processing is further documented [here](./3%20-%20Formatting%20The%20Model%20Inputs.md).
+The implementation of this processing is further documented [here](./3%20-%20Formatting%20The%20Model%20Inputs.md#tmp_storage).
 
 In this section, we call $SPD(n)$ the set of $n \times n$ SPD matrices.
 
