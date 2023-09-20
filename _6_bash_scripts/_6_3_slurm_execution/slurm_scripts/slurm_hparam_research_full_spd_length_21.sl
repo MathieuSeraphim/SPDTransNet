@@ -38,10 +38,6 @@ module load pytorch-gpu/py3/1.11.0
 PATH=$PATH:~/.local/bin
 export PATH
 
-# Move to the script directory, then to the root
-cd "$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")"
-cd ../..
-
 # The fold index is set to 11 for hyperparameter researches (with zero-indexing)
 # Initially a random choice, now preserved for the sake of consistency
 set -x

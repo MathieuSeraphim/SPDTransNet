@@ -107,7 +107,7 @@ see the [further documentation](#documentation) linked below.
 Please note that [the MASS dataset](http://ceams-carsm.ca/en/mass/) is only available upon demand.
 
 This repository was built for mono-GPU usage on a remote server managed using [Slurm](https://slurm.schedmd.com/documentation.html).
-Examples of execution scripts can be found [here](./_6_bash_scripts), and **need to be adapted** to suit your situation.  
+Examples of execution scripts can be found [here](./_6_bash_scripts/_6_3_slurm_execution), and **need to be adapted** to suit your situation.  
 All Python scripts should be run from the repository's root, or you riFsk breaking imports. The execution scripts linked
 above can be run from anywhere.
 
@@ -168,8 +168,8 @@ it from `lightning_logs`.
 
 This is similar to the [above](#reproducing_results) instructions, with the following changes:
 - Before step 1, generate the `[ROOT]/db/database.db` [file](./db/database.db) necessary for the hyperparameter research
-by running the appropriate BASH script (for [local execution](./_6_bash_scripts/bash_optuna_db_generation_local.sh)
-or on a [Slurm server](./_6_bash_scripts/bash_optuna_db_generation_server.sh)).
+by running the appropriate BASH script (for [local execution](./_6_bash_scripts/_6_1_optuna_db_generation/bash_optuna_db_generation_local.sh)
+or on a [Slurm server](./_6_bash_scripts/_6_1_optuna_db_generation/bash_optuna_db_generation_server.sh)).
 - In step 1, run [the hyperparameter research Slurm script](./_6_bash_scripts/_6_2_slurm_execution/slurm_hparam_research_full_spd_length_21.sl),
 or a local equivalent (not provided here). This should run a total of 50 runs oo fold 11, with a maximum of 5 running at
 any moment.

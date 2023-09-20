@@ -42,10 +42,6 @@ module load pytorch-gpu/py3/1.11.0
 PATH=$PATH:~/.local/bin
 export PATH
 
-# Move to the script directory, then to the root
-cd "$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")"
-cd ../..
-
 set -x
 srun python -u command_line_runner.py --execution_method from_hparams --execution_type fit --global_seed 42 --trainer_config_file trainer_default_config.yaml --trainer_config.logger_version ${SLURM_ARRAY_TASK_ID} --hparams_config_file prevectorized_spd_network_length_21_best_mf1_hparams.yaml --datamodule_config.batch_size 64 --datamodule_config.cross_validation_fold_index $fold
 
