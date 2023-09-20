@@ -11,7 +11,7 @@ export PATH
 
 # Move to the script directory, then to the root, and create the folder "db"
 cd "$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")"
-cd ..
+cd ../..
 mkdir -p db
 
 # The following allows for the deletion and generation of Optuna studies within a single database file.
