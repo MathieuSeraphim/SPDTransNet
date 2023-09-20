@@ -106,14 +106,10 @@ The following instructions should be sufficient to reproduce the results present
 see the [further documentation](#documentation) linked below.  
 Please note that [the MASS dataset](http://ceams-carsm.ca/en/mass/) is only available upon demand.
 
-This repository was built for mono-GPU usage on a remote server managed using [Slurm](https://slurm.schedmd.com/documentation.html).
-Examples of execution scripts can be found [here](./_6_bash_scripts/_6_3_slurm_execution), and **need to be adapted** to suit your situation.  
-All Python scripts should be run from the repository's root, or you riFsk breaking imports. The execution scripts linked
-above can be run from anywhere.
-
-*Note: our script stores Slurm output and error files in a dedicated `[ROOT]/log` folder, which **must** be manually
-created prior to running the Slurm scripts if you are using an older version of the tool.  
-This step is no longer necessary [for Slurm versions 23.02](https://stackoverflow.com/a/54487158) or above.*
+**IMPORTANT:** renaming or moving around files **runs the risk of breaking absolutely everything**.
+Besides Python imports, many scripts refer to other repository files through some form of relative pathing,
+including the present document.  
+**You have been warned.**
 
 <h3 style="text-align: center;">Python environment</h3>
 
@@ -123,7 +119,41 @@ It has been tested with Python versions 3.8.10 and 3.9.12, with the full list of
 [here](./_z_miscellaneous/documentation/tested_environments).  
 Compatibility with other versions of the presented libraries is not guaranteed.
 
+Due to the way Python imports are managed, almost **all Python scripts must be ran from the repository root.**
+The only exceptions are scripts that do not import anything from other repository files.  
+`.sh` scripts must be ran from any directory, but must be ran with Bash.
+
 **IMPORTANT:** this repository does **not** currently work with versions 2.x and above of PyTorch or PyTorch Lightning!
+
+<h3 style="text-align: center;">HPC Computing \& Slurm</h3>
+
+**IMPORTANT:** if you are running everything locally, **you may ignore this section** and any subsequent reference to Slurm.
+
+This repository was built for mono-GPU usage on a remote server managed using [Slurm](https://slurm.schedmd.com/documentation.html).
+Example Slurm scripts (with the `.sl` extension) can be found in the `slurm_scripts` [subfolder](./_6_bash_scripts/_6_3_slurm_execution/slurm_scripts)
+of the `6_3_slurm_execution` [folder](./_6_bash_scripts/_6_3_slurm_execution).
+
+**Unless you are using the French [Jean Zay supercomputer](http://www.idris.fr/eng/jean-zay/cpu/jean-zay-cpu-hw-eng.html),
+you _will_ have to modify the Slurm scripts before execution.**
+
+Should you wish to run the `.sl` Slurm scripts directly, follow these instructions:
+- Unless you are using [Slurm 23.02](https://stackoverflow.com/a/54487158) or above, make sure that a `[ROOT]/log`
+folder exists. If not, create one.
+- Run the scripts using the `sbatch` command, either from the repository root or by using the option `--chdir=[ROOT]`.
+
+Alternatively, you can use the provided `.sh` Bash files, which you can run from anywhere, doing **one** of the following:
+- Run the `_bash_run_any_slurm_script.sh` [script](./_6_bash_scripts/_6_3_slurm_execution/_bash_run_any_slurm_script.sh),
+with the relevant Slurm script's file basename as argument (i.e.
+`bash [PATH TO _6_3_slurm_execution]/_bash_run_any_slurm_script.sh [SLURM SCRIPT BASENAME].sl`).
+- Directly run the Bash script associated with the wanted script, i.e. one of the other `.sh` files
+[here](./_6_bash_scripts/_6_3_slurm_execution.  
+
+This will generate the aforementioned `[ROOT]/log` folder.
+
+For the rest of this documentation, the link associated with a given "Slurm script" will point to its associated Bash
+script.
+
+**IMPORTANT:** do **not** delete the `[ROOT]/log` folder until all Slurm jobs have completed!
 
 <h3 style="text-align: center;">Preprocessing</h3>
 
@@ -131,27 +161,27 @@ Compatibility with other versions of the presented libraries is not guaranteed.
 It should be named `MASS_SS3`, and contain all `* Base.edf` and `* PSG.edf` files for all 62 subjects - numbered from
 `01-03-0001` to `01-03-0064`. Subjects 43 and 49 should be missing; that is normal.
 2. Directly run the `MASS_extraction.py` [Python script](./_2_data_preprocessing/_2_2_data_extraction/_extraction_scripts/MASS_extraction.py),
- or [the corresponding Slurm script](./_6_bash_scripts/_6_2_slurm_execution/slurm_run_extraction_MASS_SS3.sl). This 
+ or [the corresponding Slurm script](./_6_bash_scripts/_6_3_slurm_execution/slurm_from_bash_run_extraction_MASS_SS3.sh). This 
 should generate the `MASS_SS3_extracted` [folder](./_2_data_preprocessing/_2_2_data_extraction/MASS_SS3_extracted)
 in the appropriate [location](./_2_data_preprocessing/_2_2_data_extraction), containing 62 `.pkl` files.
 3. Directly run the `SPDFromEEGPreprocessor.py` [Python script](./_2_data_preprocessing/_2_3_preprocessors/SPD_matrices_from_EEG_signals/SPDFromEEGPreprocessor.py),
- or [the corresponding Slurm script](./_6_bash_scripts/_6_2_slurm_execution/slurm_run_preprocessing_MASS_SS3.sl). This
+ or [the corresponding Slurm script](./_6_bash_scripts/_6_3_slurm_execution/slurm_from_bash_run_preprocessing_MASS_SS3.sh). This
 should generate the `_2_4_preprocessed_data` directory (if it doesn't exist), as well as the `MASS_SS3_dataset_with_ICASSP_signals_config`
 [folder](./_2_data_preprocessing/_2_4_preprocessed_data/MASS_SS3_dataset_with_ICASSP_signals_config) folder therein.
 This folder contains a `.pkl` file for every epoch in the dataset (> 58000).
 
 <h3 id="reproducing_results" style="text-align: center;">Reproducing our results</h3>
 
-1. Run the model for training using [the appropriate BASH script](./_6_bash_scripts/_6_1_local_execution/bash_one_run_full_spd_best_mf1_length_21.sh)
+1. Run the model for training using [the appropriate BASH script](./_6_bash_scripts/_6_2_local_execution/bash_one_run_full_spd_best_mf1_length_21.sh)
 31 times sequentially, e.g. through the command `bash bash_one_run_full_spd_best_mf1_length_21.sh [X]`,
 substituting `[X]` with every integer from 0 to 30; or run
-[the corresponding Slurm script](./_6_bash_scripts/_6_2_slurm_execution/slurm_all_folds_full_spd_best_mf1_length_21.sl)
+[the corresponding Slurm script](./_6_bash_scripts/_6_3_slurm_execution/slurm_from_bash_all_folds_full_spd_best_mf1_length_21.sh)
 once. This should generate the `lightning_logs` [folder](./lightning_logs) at the project root, as well as a log folder
 within called  `version_[X]`. This will also create a folder called `tmp_vectorized_data` (if it doesn't already exist),
 as well as `.zip` files that will be automatically deleted if the run terminates without error.
 2. When all training runs have ended, the `tmp_vectorized_data` [folder](./tmp_vectorized_data) may be safely deleted.
 3. Directly run the `command_line_tester.py` [Python script](./command_line_tester.py), or
-[the corresponding Slurm script](./_6_bash_scripts/_6_2_slurm_execution/slurm_runs_analysis.sl).
+[the corresponding Slurm script](./_6_bash_scripts/_6_3_slurm_execution/slurm_from_bash_runs_analysis.sh).
 4. This should generate the `test_logs` folder at the project root, which may safely be deleted after the program ends.
 Same thing for `tmp_vectorized_data`, which should be re-generated as before.
 5. The `output` [folder](./_5_execution/_5_1_runs_analysis/output) should be generated within the `_5_1_runs_analysis`
@@ -170,7 +200,7 @@ This is similar to the [above](#reproducing_results) instructions, with the foll
 - Before step 1, generate the `[ROOT]/db/database.db` [file](./db/database.db) necessary for the hyperparameter research
 by running the appropriate BASH script (for [local execution](./_6_bash_scripts/_6_1_optuna_db_generation/bash_optuna_db_generation_local.sh)
 or on a [Slurm server](./_6_bash_scripts/_6_1_optuna_db_generation/bash_optuna_db_generation_server.sh)).
-- In step 1, run [the hyperparameter research Slurm script](./_6_bash_scripts/_6_2_slurm_execution/slurm_hparam_research_full_spd_length_21.sl),
+- In step 1, run [the hyperparameter research Slurm script](./_6_bash_scripts/_6_3_slurm_execution/slurm_from_bash_hparam_research_full_spd_length_21.sh),
 or a local equivalent (not provided here). This should run a total of 50 runs oo fold 11, with a maximum of 5 running at
 any moment.
 - Once the search is finished, substitute contents of the current
