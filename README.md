@@ -14,7 +14,8 @@ A previous, non-structure-preserving version of this method was presented in the
 by [Mathieu Seraphim](https://orcid.org/0000-0002-9367-1190), [Paul Dequidt](https://orcid.org/0000-0002-8362-7735),
 [Alexis Lechervy](https://orcid.org/0000-0002-9441-0187), [Florian Yger](https://orcid.org/0000-0002-7182-8062),
 [Luc Brun](https://orcid.org/0000-0002-1658-0527) and [Olivier Etard](https://orcid.org/0000-0003-3661-0233) - 
-Conference CAIP 2023, Cyprus (in press - Accepted Manuscript [here](https://lechervy.users.greyc.fr/publi/C/publi_pdf/caip23.pdf)).  
+Conference CAIP 2023, Cyprus (official Version on Record [here](https://doi.org/10.1007/978-3-031-44240-7_7) -
+Accepted Manuscript [here](https://lechervy.users.greyc.fr/publi/C/publi_pdf/caip23.pdf)).  
 Other references can be found in this repository's main paper.
 
 **Important:** due to space constraints, some specifics were left out of the paper. To selectively read the relevant
