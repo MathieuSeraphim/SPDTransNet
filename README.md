@@ -122,7 +122,7 @@ Compatibility with other versions of the presented libraries is not guaranteed.
 
 Due to the way Python imports are managed, almost **all Python scripts must be ran from the repository root.**
 The only exceptions are scripts that do not import anything from other repository files.  
-`.sh` scripts must be ran from any directory, but must be ran with Bash.
+`.sh` scripts can be ran from any directory, but must be ran with Bash.
 
 **IMPORTANT:** this repository does **not** currently work with versions 2.x and above of PyTorch or PyTorch Lightning!
 
