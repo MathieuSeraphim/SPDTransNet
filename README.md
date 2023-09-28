@@ -19,7 +19,7 @@ Accepted Manuscript [here](https://lechervy.users.greyc.fr/publi/C/publi_pdf/cai
 Other references can be found in this repository's main paper.
 
 **Important:** due to space constraints, some specifics were left out of the paper. To selectively read the relevant
-sections, please prioritize sections [marked with an asterisk](./README.md#documentation), as well as the similarly marked
+sections, please prioritize sections [marked with an asterisk](#further-documentation), as well as the similarly marked
 subsections within them.  
 A spreadsheet with our model's results (as summarized in the paper) can be found [here](./_z_miscellaneous/documentation/extras/ICASSP%20runs.xlsx).
 
@@ -104,7 +104,7 @@ Consequently, the code remains modular and adaptable, but might be challenging t
 <h2 style="text-align: center;">Instructions</h2>
 
 The following instructions should be sufficient to reproduce the results presented in the paper. To expand upon it,
-see the [further documentation](#documentation) linked below.  
+see the [further documentation](#further-documentation) linked below.  
 Please note that [the MASS dataset](http://ceams-carsm.ca/en/mass/) is only available upon demand.
 
 **IMPORTANT:** renaming or moving around files **runs the risk of breaking absolutely everything**.
@@ -219,7 +219,7 @@ As files systems usually have a limit to the amount of files allowed to exist at
 a limiting factor in terms of amount of simultaneous runs possible.  
 If this aspect causes issues, please refer to [the relevant documentation](./_z_miscellaneous/documentation/3%20-%20Formatting%20The%20Model%20Inputs.md#tmp_storage).
 
-<h2 id="documentation" style="text-align: center;">Further Documentation*</h2>
+<h2 id="further-documentation" style="text-align: center;">Further Documentation*</h2>
 
 To further understand our approach and/or expand upon it, please refer to the following documentation files:
 - [Implemented Configuration Strategy](./_z_miscellaneous/documentation/1%20-%20Implemented%20Configuration%20Strategy.md) -
