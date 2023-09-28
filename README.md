@@ -147,7 +147,7 @@ Alternatively, you can use the provided `.sh` Bash files, which you can run from
 with the relevant Slurm script's file basename as argument (i.e.
 `bash [PATH TO _6_3_slurm_execution]/_bash_run_any_slurm_script.sh [SLURM SCRIPT BASENAME].sl`).
 - Directly run the Bash script associated with the wanted script, i.e. one of the other `.sh` files
-[here](./_6_bash_scripts/_6_3_slurm_execution.  
+[here](./_6_bash_scripts/_6_3_slurm_execution).  
 
 This will generate the aforementioned `[ROOT]/log` folder.
 
