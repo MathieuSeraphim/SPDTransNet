@@ -64,11 +64,14 @@ purposes - see [here](#augmentation)) for each subwindow.
 Finally, it may also compute recording-wise matrices (and vectors) for whitening purposes (see 
 [here](#whitening)).
 
-It is designed to potentially compute and save multiple configurations in `.pkl` files (see ), so that the wanted configuration may be
-requested on-the-fly during hyperparameter researches.
+It is designed to potentially compute and save multiple configurations in `.pkl` files, so that the wanted configuration may be
+requested on-the-fly during hyperparameter researches (see [here](./5%20-%20Running%20The%20Model.md#optuna)).
 In this section, "default" configuration refers to the one applied to the data used to validate our model in the paper.  
 By default, we subdivide each epoch into 30 1s subwindows, computing 30 SPD matrices per epoch channel.
 As we use 8 EEG signals, our covariance matrices are of size 8 $\times$ 8.
+
+Much of this pipeline was initially presented in [this paper](https://doi.org/10.1007/978-3-031-44240-7_7), before being
+expanded upon in this repository's corresponding paper (see [here](../../README.md)).
 
 Signal preprocessing pipeline:
 - Z-score normalization (optional).
