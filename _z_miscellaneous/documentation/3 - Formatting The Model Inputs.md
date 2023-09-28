@@ -1,8 +1,5 @@
 <h1 style="text-align: center;">Formatting The Model Inputs</h1>
 
-*Work in progress. This documentation should be completed by the end of September 2023. In the meantime,
-do not hesitate to [contact us](mailto:mathieu.seraphim@unicaen.fr) for more information.*
-
 In [PyTorch](https://pytorch.org/docs/1.11/), `Dataset` classes contain the logic necessary to load samples from a given
 dataset one item at a time, and are passed as argument to a `DataLoader` class to form batches.
 Typically, different subsets of a given dataset (i.e. the training, test, and sometimes validation sets) are each
