@@ -169,7 +169,7 @@ in the appropriate [location](./_2_data_preprocessing/_2_2_data_extraction), con
  or [the corresponding Slurm script](./_6_bash_scripts/_6_3_slurm_execution/slurm_from_bash_run_preprocessing_MASS_SS3.sh). This
 should generate the `_2_4_preprocessed_data` directory (if it doesn't exist), as well as the `MASS_SS3_dataset_with_ICASSP_signals_config`
 [folder](./_2_data_preprocessing/_2_4_preprocessed_data/MASS_SS3_dataset_with_ICASSP_signals_config) folder therein.
-This folder contains a `.pkl` file for every epoch in the dataset (> 58000).
+This folder contains a `.pkl` file for every epoch in the dataset (59317 in total).
 
 <h3 id="reproducing_results" style="text-align: center;">Reproducing our results</h3>
 

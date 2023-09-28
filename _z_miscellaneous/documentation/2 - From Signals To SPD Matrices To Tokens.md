@@ -34,6 +34,10 @@ should be convertible by creating the appropriate [configuration file](../../_1_
 with minimal modifications to the 
 [extraction script](../../_2_data_preprocessing/_2_2_data_extraction/_extraction_scripts/MASS_extraction.py).
 
+*Note: due to various reasons, some epochs are marked as undetermined (i.e. "Sleep stage ?") in the pre-extraction
+MASS-SS3 dataset. Those are simply ignored, and removed from the dataset post-extraction.  
+We do not take the resulting "gap" in the recording's sequence of epochs into account, as it is a very rare occurrence.*
+
 <h2 style="text-align: center;">Preprocessors And Data Readers</h2>
 
 The `Preprocessor` [classes](../../_2_data_preprocessing/_2_3_preprocessors) are designed to apply a number of
