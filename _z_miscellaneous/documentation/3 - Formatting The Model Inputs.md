@@ -103,7 +103,7 @@ with:
 - $d(m)$ the length of SPD matrix-derived token sizes, with $m$ the matrix size (see
 [here](./2%20-%20From%20Signals%20To%20SPD%20Matrices%20To%20Tokens.md#tokenization)).
 
-<h3 style="text-align: center;">Data duplication</h3>
+<h3 id="data-duplication" style="text-align: center;">Data duplication</h3>
 
 Not counting [border effects](#sequences) and [trimmings](#trimming), each epoch appears 21 times in the dataset,
 leading to large amounts of data duplication.  
@@ -122,5 +122,32 @@ this might be a source of confusion...)
 Even without considering the dataset duplications mentioned above, the quantity of data in our dataset makes memory
 storage impractical. As such, we have found it necessary to store the preprocessed inputs on hard drive.
 
-[//]: # (SVD time)
+The most time-consuming element of running the model is the SVD computation done as part of
+[the tokenization process](./2%20-%20From%20Signals%20To%20SPD%20Matrices%20To%20Tokens.md#tokenization),
+followed by on-the-fly loading of the aforementioned preprocessed inputs from stored files. Both operations are more
+costly than all other operating computations by orders of magnitude.
+
+The first effect is exacerbated by the data duplication issues [mentioned above](#data-duplication), but can be
+mitigated by being done in advance. This cannot be done in advance, as at least the `augmentation_factor` hyperparameter
+tends to change between runs, requiring a dedicated tokenization computation per run.  
+However, as no trained parameters are utilized for this tokenization, it can be done once during initialization, saving
+time overall.
+
+These computed tokens must be temporarily stored on disk, which can be done in one of two ways:
+- Separate files per epoch. This is the faster option overall by about an order of magnitude, but generates a large
+number of files (more than 50000 per training runs, corresponding to 60 recordings' worth). On machines with a limited
+number of inodes or a high minimum file size, this can be problematic.
+- One single `.zip` file, managed using the `zarr` library. Even with no compression, this is way more time-consuming.
+
+Note that tn both cases, this assumes that you will have enough disk space to essentially duplicate the MASS-SS3 dataset
+once per run.  
+In our case, disk space wasn't an issue, but we only had enough inodes allocated for 5 simultaneous runs, even in a
+highly multi-GPU environment. Hence, we configured our hyperparameter researches to do 5 simultaneous time-efficient
+runs, and ran our 31-fold cross-validations using 31 simultaneous single-file runs.
+
+In both cases, the temporary files should be automatically destroyed by the end of the run, ***except*** if it ended in
+an error stage. In that case, you may have to delete them manually.  
+Please refer to [the relevant section in the main README file](../../README.md#reproducing_results) for more
+information.
+
 
