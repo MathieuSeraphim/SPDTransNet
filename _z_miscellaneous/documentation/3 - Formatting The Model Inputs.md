@@ -15,11 +15,13 @@ implementation of said classes. In this file, we shall go over the technical asp
 In particular, it shall focus on the utilized `VectorizedSPDFromEEGDataModule`
 [class](../../_3_data_management/_3_2_data_modules/SPD_matrices_from_EEG_signals/VectorizedSPDFromEEGDataModule.py),
 and its corresponding `StandardVectorizedSPDFromEEGDataset`
-[class](../../_3_data_management/_3_2_data_modules/SPD_matrices_from_EEG_signals/datasets/StandardVectorizedSPDFromEEGDataset.py).
+[class](../../_3_data_management/_3_2_data_modules/SPD_matrices_from_EEG_signals/datasets/StandardVectorizedSPDFromEEGDataset.py).  
+The arguments used to instantiate the aforementioned `VectorizedSPDFromEEGDataModule` class are detailed within 
+[the class' constructor](../../_3_data_management/_3_2_data_modules/SPD_matrices_from_EEG_signals/VectorizedSPDFromEEGDataModule.py).
 
 **IMPORTANT:** as alluded to [here](./2%20-%20From%20Signals%20To%20SPD%20Matrices%20To%20Tokens.md#dataset_processing),
 the augmentation, whitening and tokenization are handled by the `StandardVectorizedSPDFromEEGDataset` class, which
-generates temporary files to store these tokens during execution. This is expanded upon in [the relevant section](#tmp_storage).
+generates temporary files to store these tokens during execution. This is expanded upon in [the relevant section below](#tmp_storage).
 
 <h2 style="text-align: center;">Training, Validation and Test Sets</h2>
 

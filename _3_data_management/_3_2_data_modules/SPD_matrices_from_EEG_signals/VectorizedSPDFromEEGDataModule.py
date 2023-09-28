@@ -25,6 +25,59 @@ class VectorizedSPDFromEEGDataModule(BaseDataModule):
                  run_identifier: Union[str, int] = "default", augmentation_factor: float = 1.,
                  matrix_multiplication_factor: float = 1., svd_singular_value_minimum: Union[float, None] = None,
                  save_in_single_file: bool = False):
+        r"""
+        Constructor for the class, including arguments to initialize its utilized Dataset object.
+        :param dataset_config_file: defines the EEG signals used, the labels and their order, and which DataReader (and
+         thus Preprocessor) configuration file to use. Also contains the path to the utilized Dataset class, which must
+         be in the COMPATIBLE_DATASET_CLASSES tuple (above).
+        :param batch_size: self-explanatory. Doesn't have to be a power of 2.
+        :param cross_validation_fold_index: one of the folds defined in the folder
+         _1_z_miscellaneous/cross_validation_folds/[DATASET NAME] (with [DATASET NAME]) defined in the Preprocessor
+         configuration file).
+        :param extra_epochs_on_each_side: context epoch for the input sequence. Final sequence length will be
+         2*extra_epochs_on_each_side + 1, with the central epoch being classified. The first and last
+         extra_epochs_on_each_side epochs of each recording will not be classified.
+        :param signal_preprocessing_strategy: the preprocessing strategy applied to the EEG signal (i.e. "raw_signals"
+         or "z_score_normalization").
+        :param channel_wise_transformations_config_file: the name of the .yaml file defining said transformation, within
+         the folder _1_z_miscellaneous/channel_wise_transformations. Defines a dict, whose keys should not contain
+         hyphens "-".
+        :param channel_wise_transformations_as_hyphenated_list: keys for the aforementioned YAML-defined dict separated
+         by hyphens "-". Order matters!
+        :param covariance_estimator: i.e. "cov", "oas" or "mcd" (cf. Preprocessor).
+        :param statistic_vectors_for_matrix_augmentation_as_hyphenated_list: keys defining statistic vectors (cf.
+         Preprocessor), separated by hyphens "-". If multiple vectors are mentioned, they will be concatenated
+          length-wise to build an augmentation matrix. Order matters!
+        :param transfer_recording_wise_matrices: whether or not recording-wise matrices should be utilized. Controls the
+         application of the whitening operation. Wording is a holdover from when the whitening was operated in the
+         model (it is now done within the Dataset).
+        :param rebalance_training_set_by_oversampling: if True, less populous classes will be randomly oversampled
+         within the training set, so that their number is on par with that of the most populous class.
+        :param clip_test_set_recordings_by_amount: ensures that the borders of recordings within the test set are
+         clipped by at least the given amount. If extra_epochs_on_each_side > clip_test_set_recordings_by_amount, the
+         behavior is unchanged. If clip_test_set_recordings_by_amount > extra_epochs_on_each_side, the first and last
+         clip_test_set_recordings_by_amount epochs of each recording will not be classified for the test set only.
+        :param dataloader_num_workers: the num_workers argument of the PyTorch DataLoader class.
+        :param no_covariances: if set to True, non-diagonal elements of the pre-augmentation covariance matrices will be
+         set to 0. If transfer_recording_wise_matrices is True, compute_recording_matrices_no_covariance must be True in
+         the Preprocessor configuration.
+        :param use_recording_wise_simple_covariances: only relevant if transfer_recording_wise_matrices is True. If
+         use_recording_wise_simple_covariances is True, recording-wise covariance matrices are used for whitening.
+         Otherwise, the affine invariant mean of the recordings' matrices are used. Set to False for best results.
+        :param get_epoch_eeg_signals: if True, feeds EEG signals to the model. Very memory-consuming, especially with
+         the data duplication resulting from our sequence-to-epoch strategy and our training set rebalancing.
+        :param random_seed: used for oversampling and training set batch formation.
+        :param run_identifier: used for log saving and checkpointing. Either set to "default", or read the relevant code
+         to understand its behavior.
+        :param augmentation_factor: used in matrix augmentation; controls the relative importance of the augmentation
+         vector / matrix with regards to the original covariance matrix that it is used to augment.
+        :param matrix_multiplication_factor: applied to all matrices after augmentation and/or whitening.
+        :param svd_singular_value_minimum: during the SVD operation used to apply the matrix log for tokenization,
+         should a singular value be below this threshold, it will be set to this threshold.
+        :param save_in_single_file: if True, the tokenized matrices generated at initialization will be saved in a
+         single .zip file (longer access time, lower number of inodes). Otherwise, they will be saved in one file per
+         epoch (>58000 files for the entire dataset!).
+        """
         self.save_hyperparameters(logger=False)
         super(VectorizedSPDFromEEGDataModule, self).__init__(batch_size, dataloader_num_workers, random_seed)
 
@@ -52,7 +105,6 @@ class VectorizedSPDFromEEGDataModule(BaseDataModule):
                                "use_recording_wise_simple_covariances": use_recording_wise_simple_covariances,
                                "get_epoch_eeg_signals": get_epoch_eeg_signals,
                                "random_seed": random_seed,
-                               "run_identifier": "default",
                                "augmentation_factor": augmentation_factor,
                                "matrix_multiplication_factor": matrix_multiplication_factor,
                                "svd_singular_value_minimum": svd_singular_value_minimum,

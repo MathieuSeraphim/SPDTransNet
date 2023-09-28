@@ -126,7 +126,7 @@ The only exceptions are scripts that do not import anything from other repositor
 
 **IMPORTANT:** this repository does **not** currently work with versions 2.x and above of PyTorch or PyTorch Lightning!
 
-<h3 style="text-align: center;">HPC Computing \& Slurm</h3>
+<h3 style="text-align: center;">HPC Computing & Slurm</h3>
 
 **IMPORTANT:** if you are running everything locally, **you may ignore this section** and any subsequent reference to Slurm.
 
