@@ -1,7 +1,5 @@
 <h1 style="text-align: center;">From Signals To SPD Matrices To Tokens*</h1>
 
-*Work in progress.*
-
 This file regroups explanations for all steps of the transformation of our data, up to the first learned model
 component.
 This touches upon multiple different modules within this repository, notably those found within the `_3_2_data_modules`

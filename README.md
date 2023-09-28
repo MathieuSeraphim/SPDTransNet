@@ -19,7 +19,7 @@ Accepted Manuscript [here](https://lechervy.users.greyc.fr/publi/C/publi_pdf/cai
 Other references can be found in this repository's main paper.
 
 **Important:** due to space constraints, some specifics were left out of the paper. To selectively read the relevant
-sections, please prioritize sections [marked with an asterisk](#documentation), as well as the similarly marked
+sections, please prioritize sections [marked with an asterisk](./README.md#documentation), as well as the similarly marked
 subsections within them.  
 A spreadsheet with our model's results (as summarized in the paper) can be found [here](./_z_miscellaneous/documentation/extras/ICASSP%20runs.xlsx).
 
