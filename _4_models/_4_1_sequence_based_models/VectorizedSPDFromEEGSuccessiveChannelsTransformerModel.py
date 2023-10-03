@@ -15,6 +15,7 @@ from _4_models._4_1_sequence_based_models.intra_element_block.Transformer_based_
     TransformerBasedSPDSequenceToSmallerFeaturesSequenceIntraElementBlock
 
 
+# This class corresponds to the SPDTransNet model in the paper.
 class VectorizedSPDFromEEGSuccessiveChannelsTransformerModel(SequenceToClassificationBaseModel):
 
     COMPATIBLE_DATA_FORMATTING_BLOCKS = (VectorizedSPDFromEEGDataMultichannelSuccessionReformattingBlock,)
@@ -37,6 +38,51 @@ class VectorizedSPDFromEEGSuccessiveChannelsTransformerModel(SequenceToClassific
             number_of_epoch_wise_feature_vectors: Union[int, None] = None,
             optimisation_config_dict: Union[Dict[str, Any], None] = None
     ):
+        r"""
+        Constructor for the class, including arguments to initialize its component blocks.
+        :param loss_function_config_dict: configuration of the loss function strategy, with a limited number of
+         pre-defined options. See the relevant code for more details.
+        :param class_labels_list: the label names, as defined in the Preprocessor. Order matters!
+        :param data_formatting_block: an object of the class utilized for data formatting - i.e. everything that
+         precedes the first analysis block. Parameters will be passed to it during setup.
+        :param intra_element_block: an object of the class utilized for intra-element analysis - for us, the intra-epoch
+         Transformer encoder followed by an average pooling. Parameters will be passed to it during setup.
+        :param inter_element_block: an object of the class utilized for inter-element analysis - for us, the inter-epoch
+         Transformer encoder.  Parameters will be passed to it during setup.
+        :param classification_block: an object of the class utilized for the final classification - for us, a couple of
+         fully connected layers followed by a final projection onto R^5. Parameters will be passed to it during setup.
+        :param number_of_eeg_signals: also the size of the pre-augmentation covariance matrices - 8 for us.
+        :param number_of_channels: self-explanatory.
+        :param extra_epochs_on_each_side: number of context epochs surrounding the central epoch to be classified.
+         Total input sequence length is 2 * extra_epochs_on_each_side + 1.
+        :param number_of_subdivisions_per_epoch: the length of the intra-epoch timeseries - 30 for us.
+        :param matrix_augmentation_size: the matrices used for augmentation are of shape
+         (number_of_eeg_signals * matrix_augmentation_size). The final matrices are in
+         SPD(number_of_eeg_signals + matrix_augmentation_size).
+        :param final_linear_projection_to_given_vector_size: after tokenization, the SPD-derived tokens are linearly
+         mapped into vectors of length final_linear_projection_to_given_vector_size. For us, must be a triangular
+         number.
+        :param number_of_intra_epoch_encoder_heads: for the Transformer encoder within the intra_element_block object.
+        :param intra_epoch_encoder_feedforward_dimension: for the Transformer encoder within the intra_element_block
+         object. For us, must be a triangular number.
+        :param intra_epoch_encoder_dropout_rate: for the Transformer encoder within the intra_element_block object.
+        :param number_of_intra_epoch_encoder_layers: for the Transformer encoder within the intra_element_block object.
+         N_{intra} on the architecture's figure.
+        :param number_of_inter_epoch_encoder_heads: for the Transformer encoder within the inter_element_block object.
+        :param inter_epoch_encoder_feedforward_dimension: for the Transformer encoder within the inter_element_block
+         object. For us, must be a triangular number.
+        :param inter_epoch_encoder_dropout_rate: for the Transformer encoder within the inter_element_block object.
+        :param number_of_inter_epoch_encoder_layers: for the Transformer encoder within the inter_element_block object.
+         N_{inter} on the architecture's figure.
+        :param fully_connected_intermediary_dimension: for the FC layers in the classification_block object. For us,
+         must be a triangular number.
+        :param fully_connected_dropout_rate: for the FC layers in the classification_block object.
+        :param learning_rate: self-explanatory.
+        :param number_of_epoch_wise_feature_vectors: number of feature vectors output by the intra-epoch step, per
+         epoch. t in the paper. Must divide number_of_subdivisions_per_epoch.
+        :param optimisation_config_dict: configuration of the optimization strategy, with a limited number of
+         pre-defined options. See the relevant code for more details.
+        """
         self.save_hyperparameters(logger=False,
                                   ignore=["data_formatting_block", "intra_element_block", "inter_element_block",
                                           "classification_block"])
