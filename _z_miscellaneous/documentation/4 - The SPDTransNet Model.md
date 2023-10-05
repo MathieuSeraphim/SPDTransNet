@@ -31,7 +31,20 @@ is the combination of the different channels into a single sequence, as explaine
 
 <h2 style="text-align: center;">Intra- and Inter-Element Autoattention*</h2>
 
+Both intra- and inter-element blocks are based on Transformer encoders, preceded by positional encoding.
+
+The intra-element (i.e. intra-epoch) block also contains an average pooling layer, subdividing the intra-epoch Transformer
+encoder's output sequence (of length $S$) into $t$ groups of $\frac{S}{t}$ tokens, and averaging each group.  
+This results in $t$ feature tokens per epochs (see the paper for more details).
+
 <h3 style="text-align: center;">Structure-Preserving Multihead Attention</h3>
+
+As alluded to in [the main README file](../../README.md#SPMHA), our Transformer encoders use the standard Pytorch
+implementation of said encoders, but with the multihead attention replaced with
+[our own SP-MHA](../../_4_models/_4_1_sequence_based_models/intra_element_block/Transformer_based_feature_extraction/layers/StructurePreservingMultiheadAttention.py):
+
+<img src="./extras/spd_preserving_multihead_attention.png" alt="The SP-MHA architecture" width="200"/>
+
 
 <h3 style="text-align: center;">Learned Sinusoidal Positional Encoding*</h3>
 

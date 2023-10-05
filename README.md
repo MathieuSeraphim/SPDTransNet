@@ -39,7 +39,7 @@ to be processed by the model.
 A first intra-element step extracting element-wise features, and a second inter-element step to compare said features.
 Both steps are based on Transformer encoders, utilizing our SP-MHA auto-attention mechanism described below.
 
-<h3 id="test" style="text-align: center;">Structure-Preserving Multihead Attention (SP-MHA)</h3>
+<h3 id="SPMHA" style="text-align: center;">Structure-Preserving Multihead Attention (SP-MHA)</h3>
 
 [The SP-MHA bloc](./_4_models/_4_1_sequence_based_models/intra_element_block/Transformer_based_feature_extraction/layers/StructurePreservingMultiheadAttention.py)
 generates $h$ attention maps from projected tokens in the same way as the original Linear MHA, bui it then combines them
