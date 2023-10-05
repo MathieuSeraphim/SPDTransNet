@@ -43,7 +43,7 @@ As alluded to in [the main README file](../../README.md#SPMHA), our Transformer 
 implementation of said encoders, but with the multihead attention replaced with
 [our own SP-MHA](../../_4_models/_4_1_sequence_based_models/intra_element_block/Transformer_based_feature_extraction/layers/StructurePreservingMultiheadAttention.py):
 
-<img src="./extras/spd_preserving_multihead_attention.png" alt="The SP-MHA architecture" width="200"/>
+<center><img src="./extras/spd_preserving_multihead_attention.png" alt="The SP-MHA architecture" width="400"/></center>
 
 
 <h3 style="text-align: center;">Learned Sinusoidal Positional Encoding*</h3>
