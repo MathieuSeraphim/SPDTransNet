@@ -1,8 +1,5 @@
 <h1 style="text-align: center;">The SPDTransNet Model*</h1>
 
-*Work in progress. This documentation should be completed by the end of the week (sorry for the delay). In the meantime,
-do not hesitate to [contact us](mailto:mathieu.seraphim@unicaen.fr) for more information.*
-
 This repository's iteration of the SPDTransNet model is implemented by the
 `VectorizedSPDFromEEGSuccessiveChannelsTransformerModel` [class](../../_4_models/_4_1_sequence_based_models/VectorizedSPDFromEEGSuccessiveChannelsTransformerModel.py),
 within the `_4_1_sequence_based_models` [directory](../../_4_models/_4_1_sequence_based_models).  
