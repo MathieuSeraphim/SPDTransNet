@@ -38,7 +38,12 @@ is the combination of the different channels into a single sequence, as explaine
 
 <h2 style="text-align: center;">Intra- and Inter-Element Autoattention*</h2>
 
-Both intra- and inter-element blocks are based on Transformer encoders, preceded by positional encoding.
+Both intra- and inter-element blocks (corresponding respectively to the 
+`TransformerBasedSPDSequenceToSmallerFeaturesSequenceIntraElementBlock`
+[class](_4_models/_4_1_sequence_based_models/intra_element_block/Transformer_based_feature_extraction/TransformerBasedSPDSequenceToSmallerFeaturesSequenceIntraElementBlock.py)
+and the `TransformerBasedSPDLearnablePositionalEncodingSequenceToSequenceInterElementBlock`
+[class](_4_models/_4_1_sequence_based_models/inter_element_block/Transformer_based_feature_comparison/TransformerBasedSPDLearnablePositionalEncodingSequenceToSequenceInterElementBlock.py))
+are based on Transformer encoders, preceded by positional encoding.
 
 The intra-element (i.e. intra-epoch) block also contains an average pooling layer, subdividing the intra-epoch Transformer
 encoder's output sequence (of length $S$) into $t$ groups of $\frac{S}{t}$ tokens, and averaging each group.  
@@ -69,8 +74,40 @@ This is a holdout from an earlier version of the model. We have found that it di
 our classification performance, but that the added computational needs were negligible within our model. Hence, it was
 retained, but kept out of the paper due to space constraints.
 
-<h2 style="text-align: center;">Obtaining the Classification Vector*</h2>
+<h2 style="text-align: center;">Obtaining the Classification Vector</h2>
 
+As stated both in the paper and multiple times elsewhere in this repository, the SPDTransNet model follows a
+sequence-to-element (also called many-to-one) classification scheme, where only the central epoch of the input sequence
+is classified.  
+Within the classification block, as encoded by the `CentralGroupOfFeaturesInSequenceClassificationBlock`
+[class](_4_models/_4_1_sequence_based_models/classification_block/classification_from_sequence_central_feature/CentralGroupOfFeaturesInSequenceClassificationBlock.py),
+the $t$ central tokens of the previous block's output (corresponding to the central epoch) are flattened and passed
+through two FC layers and a classification layer.
 
+The "FC" obviously stands for "fully connected", but each FC layer is actually composed of a fully connected (i.e.
+[Linear](https://pytorch.org/docs/1.11/generated/torch.nn.Linear.html?highlight=linear#torch.nn.Linear)) layer, followed
+by a ReLU activation and dropout layer.  
+The final classification layer is a single fully connected layer outputting a vector in $\mathbb{R}^c$, with $c$ the
+number of classes (i.e. 5 in this repository).
 
 <h2 style="text-align: center;">Loss and Optimization*</h2>
+
+As seen in [the main model class](../../_4_models/_4_1_sequence_based_models/VectorizedSPDFromEEGSuccessiveChannelsTransformerModel.py),
+the loss function, and optimizer are also modular.  
+In our final configuration, we have chosen the following:
+- Loss function: cross-entropy with label smoothing (which operates a softmax function on the model's output vector, as
+we use the [standard Pytorch implementation](https://pytorch.org/docs/1.11/generated/torch.nn.CrossEntropyLoss.html));
+- Optimizer: Adam (with weight decay);
+- Learning rate scheduler: exponential decay.
+
+Note that our model's training, validation and test modes are designed to output performance evaluations, to be analyzed
+through Tensorboard. To output actual classifications with a given (trained) model, you should use the "predict" mode.  
+
+The aforementioned metrics are:
+- The global and macro-averaged accuracy,
+- The class-wise and macro-averaged F1 scores,
+- Cohen's kappa ($\kappa$),
+- Confusion matrices, both as counts and percentages (i.e. "normalized").
+
+These metrics are defined in the `BaseModel` [class](../../_4_models/BaseModel.py), to ensure common metrics with other
+models in this project, if any.
