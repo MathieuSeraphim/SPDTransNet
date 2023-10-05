@@ -68,7 +68,7 @@ containing signal transformation instrictions for preprocessing in `.yaml` forma
 further documentation [here](./2%20-%20From%20Signals%20To%20SPD%20Matrices%20To%20Tokens.md);
 - the `cross_validation_folds` [folder](../../_1_configs/_1_z_miscellaneous/cross_validation_folds), containing the
 `.yaml` files that define MASS-SS3's 31 cross-validation folds - further documentation
-[here](../../_1_configs/_1_z_miscellaneous/cross_validation_folds/MASS_SS3/folds_generation/Fold Specifics.md);
+[here](../../_1_configs/_1_z_miscellaneous/cross_validation_folds/MASS_SS3/folds_generation/Fold%20Specifics.md);
 - the `execution` [folder](../../_1_configs/_1_z_miscellaneous/cross_validation_folds), also accessible through
 [a symbolic link](../../_5_execution/_5_z_configs) in the `_5_execution` [directory](../../_5_execution) - it is
 documented primarily [here](./5%20-%20Running%20The%20Model.md).
