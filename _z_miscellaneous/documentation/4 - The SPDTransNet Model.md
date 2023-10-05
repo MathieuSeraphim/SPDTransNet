@@ -21,6 +21,13 @@ function and optimizer.
 The arguments used to instantiate the model and its component blocks are detailed within
 [the main model class' constructor](../../_4_models/_4_1_sequence_based_models/VectorizedSPDFromEEGSuccessiveChannelsTransformerModel.py).
 
+As stated in the CAIP paper (see [main README](../../README.md#SPMHA)), the original inspiration for this architecture
+was presented in the ***SleepTransformer: Automatic Sleep Staging With Interpretability and Uncertainty Quantification***
+[paper](https://www.doi.org/10.1109/TBME.2022.3147187) by [Huy Phan](https://orcid.org/0000-0003-4096-785X),
+[Kaare Mikkelsen](https://orcid.org/0000-0002-7360-8629), [Olivier Chén](https://orcid.org/0000-0002-5696-3127),
+[Philipp Koch](https://www.isip.uni-luebeck.de/people/philipp-koch),
+[Alfred Mertins](https://orcid.org/0000-0001-5718-577X) and [Maarten De Vos](https://orcid.org/0000-0002-3482-5145).
+
 <h2 style="text-align: center;">Data Formatting</h2>
 
 As the whitening and augmentation operations are handled by the `Dataset` class in this repository's implementation
@@ -45,9 +52,25 @@ implementation of said encoders, but with the multihead attention replaced with
 
 <div style="text-align: center;"><img src="./extras/spd_preserving_multihead_attention.png" alt="The SP-MHA architecture" width="300"/></div>
 
+More details can be found in the paper.
 
 <h3 style="text-align: center;">Learned Sinusoidal Positional Encoding*</h3>
 
+[The positional encoding layer](../../_4_models/_4_1_sequence_based_models/intra_element_block/Transformer_based_feature_extraction/layers/LearnableSinusoidalPositionalEncodingLayer.py)
+utilized in this repository is not the standard sinusoidal encoding, but rather a combination of it and fully connected
+layers, as presented in the
+***A Simple yet Effective Learnable Positional Encoding Method for Improving Document Transformer Model***
+[paper](https://aclanthology.org/2022.findings-aacl.42/) by [Guoxin Wang](https://aclanthology.org/people/g/guoxin-wang/),
+[Yijuan Lu](https://aclanthology.org/people/y/yijuan-lu/), [Lei Cui](https://aclanthology.org/people/l/lei-cui/),
+[Tengchao Lv](https://aclanthology.org/people/t/tengchao-lv/), [Dinei Florencio](https://aclanthology.org/people/d/dinei-florencio/)
+and [Cha Zhang](https://aclanthology.org/people/c/cha-zhang/).
+
+This is a holdout from an earlier version of the model. We have found that it didn't add any significant improvements to
+our classification performance, but that the added computational needs were negligible within our model. Hence, it was
+retained, but kept out of the paper due to space constraints.
+
 <h2 style="text-align: center;">Obtaining the Classification Vector*</h2>
+
+
 
 <h2 style="text-align: center;">Loss and Optimization*</h2>
