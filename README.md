@@ -228,7 +228,7 @@ an overview of our configuration files, and how to make your own.
 the various steps underwent to transform our data from 1D signals to multichannel sequences of SPD matrices.
 - [Formatting The Model Inputs](./_z_miscellaneous/documentation/3%20-%20Formatting%20The%20Model%20Inputs.md) -
 data rebalancing and trimming, batch formation and temporary storage strategies.
-- [The SPDTransNet Model](./_z_miscellaneous/documentation/4%20-%20The%20SPDTransNet%20Model.md) -
+- [The SPDTransNet Model](./_z_miscellaneous/documentation/4%20-%20The%20SPDTransNet%20Model.md)* -
 the modular implementation of the model's various components.
 - [Running The Model](./_z_miscellaneous/documentation/5%20-%20Running%20The%20Model.md) -
 instructions on execution customization and hyperparameter researches.
