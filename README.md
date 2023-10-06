@@ -195,7 +195,7 @@ re-attempting step 3.
 combine both logs and lead to issues down the line. If you want to keep both log folders, rename the first one or remove
 it from `lightning_logs`.
 
-<h3 style="text-align: center;">From hyperparameter research to final results</h3>
+<h3 id="hparam_research" style="text-align: center;">From hyperparameter research to final results</h3>
 
 This is similar to the [above](#reproducing_results) instructions, with the following changes:
 - Before step 1, generate the `[ROOT]/db/database.db` [file](./db/database.db) necessary for the hyperparameter research

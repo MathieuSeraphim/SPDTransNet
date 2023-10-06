@@ -2,7 +2,6 @@
 # -*- coding: utf-8 -*-
 import shutil
 import warnings
-
 import mne
 import pyedflib
 import pickle
