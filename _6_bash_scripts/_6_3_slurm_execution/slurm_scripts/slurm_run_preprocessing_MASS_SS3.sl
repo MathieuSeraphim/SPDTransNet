@@ -20,7 +20,7 @@
 #SBATCH --gres gpu:1
 
 # Job time (hh:mm:ss)
-#SBATCH --time 4:00:00
+#SBATCH --time 10:00:00
 
 #SBATCH --mail-type ALL
 # User e-mail address

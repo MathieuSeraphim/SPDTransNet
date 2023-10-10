@@ -21,7 +21,7 @@
 #SBATCH --tasks-per-node=1
 
 # Job time (hh:mm:ss)
-#SBATCH --time 10:00:00
+#SBATCH --time 20:00:00
 
 #SBATCH --mail-type ALL
 # User e-mail address
