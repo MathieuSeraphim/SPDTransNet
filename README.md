@@ -6,8 +6,7 @@ This repository is the official implementation of the SPDTransNet model, as pres
 ***Structure-Preserving Transformers for Sequences of SPD Matrices***
 by [Mathieu Seraphim](https://orcid.org/0000-0002-9367-1190), [Alexis Lechervy](https://orcid.org/0000-0002-9441-0187),
 [Florian Yger](https://orcid.org/0000-0002-7182-8062), [Luc Brun](https://orcid.org/0000-0002-1658-0527)
-and [Olivier Etard](https://orcid.org/0000-0003-3661-0233) - submitted to ICASSP 2024 (acceptance pending - Preprint
-[here](https://arxiv.org/pdf/2309.07579.pdf)).
+and [Olivier Etard](https://orcid.org/0000-0003-3661-0233) - available on [arXiv](https://arxiv.org/pdf/2309.07579.pdf).
 
 A previous, non-structure-preserving version of this method was presented in the paper
 ***Temporal Sequences of EEG Covariance Matrices for Automated Sleep Stage Scoring with Attention Mechanisms***
@@ -17,6 +16,11 @@ by [Mathieu Seraphim](https://orcid.org/0000-0002-9367-1190), [Paul Dequidt](htt
 Conference CAIP 2023, Cyprus (official Version on Record [here](https://doi.org/10.1007/978-3-031-44240-7_7) -
 Accepted Manuscript [here](https://lechervy.users.greyc.fr/publi/C/publi_pdf/caip23.pdf)).  
 Other references can be found in this repository's main paper.
+
+*Note: this repository's accompanying paper was initially submitted to - and subsequently rejected by - the 
+[ICASSP 2024 conference](https://2024.ieeeicassp.org/), citing a lack of experiments, amongst others. It has been found
+"Of sufficient interest" in importance/relevance and "Probably correct" in technical correctness by all three
+reviewers.*
 
 **Important:** due to space constraints, some specifics were left out of the paper. To selectively read the relevant
 sections, please prioritize sections [marked with an asterisk](#further-documentation), as well as the similarly marked
