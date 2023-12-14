@@ -39,6 +39,10 @@ whose role is pretty self-explanatory - further documentation [here](./4%20-%20T
 - the `_1_6_trainer` [folder](../../_1_configs/_1_6_trainer): the PyTorch Trainer class, used to define the training
 loop and manage the utilized `Model` and `DataModule` classes - further documentation [here](./5%20-%20Running%20The%20Model.md).
 
+*Note: some configuration files contain `ICASSP_signals` within their name. This refers to the chosen collection of 8
+EEG signals, which is no longer relevant to the ICASSP conference. The name was left unchanged to avoid unintentionally
+breaking something.*
+
 <h3 style="text-align: center;">Important Caveats</h3>
 
 Regarding the `_1_4_data_modules` and `_1_5_models` folders, keep in mind the following:

@@ -17,11 +17,6 @@ Conference CAIP 2023, Cyprus (official Version on Record [here](https://doi.org/
 Accepted Manuscript [here](https://lechervy.users.greyc.fr/publi/C/publi_pdf/caip23.pdf)).  
 Other references can be found in this repository's main paper.
 
-*Note: this repository's accompanying paper was initially submitted to - and subsequently rejected by - the 
-[ICASSP 2024 conference](https://2024.ieeeicassp.org/), citing a lack of experiments, amongst others. It has been found
-"Of sufficient interest" in importance/relevance and "Probably correct" in technical correctness by all three
-reviewers.*
-
 **Important:** due to space constraints, some specifics were left out of the paper. To selectively read the relevant
 sections, please prioritize sections [marked with an asterisk](#further-documentation), as well as the similarly marked
 subsections within them.  
