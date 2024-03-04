@@ -20,7 +20,7 @@ Other references can be found in this repository's main paper.
 **Important:** due to space constraints, some specifics were left out of the paper. To selectively read the relevant
 sections, please prioritize sections [marked with an asterisk](#further-documentation), as well as the similarly marked
 subsections within them.  
-A spreadsheet with our model's results (as summarized in the paper) can be found [here](./_z_miscellaneous/documentation/extras/ICASSP%20runs.xlsx).
+A spreadsheet with our model's results (as summarized in the paper) can be found [here](./_z_miscellaneous/documentation/extras/EUSIPCO%20runs.xlsx).
 
 For additional information, feel free to [contact us](mailto:mathieu.seraphim@unicaen.fr).
 
@@ -84,7 +84,7 @@ a timeseries of $S$ = 30 SPD matrices of size 9 $\times$ 9 over $C$ = 7 channels
 
 The reported results for models from the literature differ from those published by the original authors, as we
 re-trained their models using our methodology.  
-A more detailed account of our results can be found [here](./_z_miscellaneous/documentation/extras/ICASSP%20runs.xlsx).
+A more detailed account of our results can be found [here](./_z_miscellaneous/documentation/extras/EUSIPCO%20runs.xlsx).
 
 More information in the paper.
 
@@ -166,8 +166,8 @@ should generate the `MASS_SS3_extracted` [folder](./_2_data_preprocessing/_2_2_d
 in the appropriate [location](./_2_data_preprocessing/_2_2_data_extraction), containing 62 `.pkl` files.
 3. Directly run the `SPDFromEEGPreprocessor.py` [Python script](./_2_data_preprocessing/_2_3_preprocessors/SPD_matrices_from_EEG_signals/SPDFromEEGPreprocessor.py),
  or [the corresponding Slurm script](./_6_bash_scripts/_6_3_slurm_execution/slurm_from_bash_run_preprocessing_MASS_SS3.sh). This
-should generate the `_2_4_preprocessed_data` directory (if it doesn't exist), as well as the `MASS_SS3_dataset_with_ICASSP_signals_config`
-[folder](./_2_data_preprocessing/_2_4_preprocessed_data/MASS_SS3_dataset_with_ICASSP_signals_config) folder therein.
+should generate the `_2_4_preprocessed_data` directory (if it doesn't exist), as well as the `MASS_SS3_dataset_with_EUSIPCO_signals_config`
+[folder](./_2_data_preprocessing/_2_4_preprocessed_data/MASS_SS3_dataset_with_EUSIPCO_signals_config) folder therein.
 This folder contains a `.pkl` file for every epoch in the dataset (59317 in total).
 
 <h3 id="reproducing_results" style="text-align: center;">Reproducing our results</h3>

@@ -1,9 +1,9 @@
 class_path: _3_data_management._3_2_data_modules.SPD_matrices_from_EEG_signals.VectorizedSPDFromEEGDataModule.VectorizedSPDFromEEGDataModule
 init_args:
-  dataset_config_file: Vectorized_SPD_matrices_from_EEG_MASS_dataset_ICASSP_signals_config.yaml
+  dataset_config_file: Vectorized_SPD_matrices_from_EEG_MASS_dataset_EUSIPCO_signals_config.yaml
   batch_size: 64
   cross_validation_fold_index: 11
-  extra_epochs_on_each_side: 10
+  extra_epochs_on_each_side: 14
   signal_preprocessing_strategy: z_score_normalization
   channel_wise_transformations_config_file: SPD_matrices_from_EEG_transformations_config.yaml
   channel_wise_transformations_as_hyphenated_list: no_transformation-delta_band_filtering-theta_band_filtering-alpha_band_filtering-low_beta_band_filtering-high_beta_band_filtering-gamma_band_filtering

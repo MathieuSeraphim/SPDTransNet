@@ -667,6 +667,6 @@ def main(config_file: str, recording_ids_list: Union[List[int], None] = None):
 
 
 if __name__ == "__main__":
-    main("SPD_matrices_from_EEG_MASS_dataset_ICASSP_signals_config.yaml")
+    main("SPD_matrices_from_EEG_MASS_dataset_EUSIPCO_signals_config.yaml")
 
 

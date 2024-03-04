@@ -37,7 +37,7 @@ PATH=$PATH:~/.local/bin
 export PATH
 
 set -x
-srun python -u run_preprocessing.py SPD_matrices_from_EEG_MASS_SS3_dataset_ICASSP_signals_config.yaml
+srun python -u run_preprocessing.py SPD_matrices_from_EEG_MASS_SS3_dataset_EUSIPCO_signals_config.yaml
 
 
 

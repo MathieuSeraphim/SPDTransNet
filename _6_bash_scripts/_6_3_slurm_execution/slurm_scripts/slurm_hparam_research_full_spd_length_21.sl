@@ -41,7 +41,7 @@ export PATH
 # The fold index is set to 11 for hyperparameter researches (with zero-indexing)
 # Initially a random choice, now preserved for the sake of consistency
 set -x
-srun python -u command_line_runner.py --optuna_flag --optuna.study_name full_spd --optuna.hparam_selection_config.model SPD_to_EEG_spd_preserving_prevectorized_config.yaml --optuna.hparam_selection_config.datamodule Vectorized_SPD_from_EEG_config.yaml --optuna.pruner.n_startup_trials 5 --execution_method standalone --execution_type fit --global_seed 42 --trainer_config_file trainer_default_config.yaml --trainer_config.logger_version ${SLURM_ARRAY_TASK_ID} --model_config_file ICASSP_signals_spd_preserving_network_prevectorized_length_21_config.yaml --datamodule_config_file Vectorized_SPD_matrices_from_EEG_MASS_dataset_ICASSP_signals_length_21_config.yaml --datamodule_config.batch_size 32 --datamodule_config.cross_validation_fold_index 11
+srun python -u command_line_runner.py --optuna_flag --optuna.study_name full_spd --optuna.hparam_selection_config.model SPD_to_EEG_spd_preserving_prevectorized_config.yaml --optuna.hparam_selection_config.datamodule Vectorized_SPD_from_EEG_config.yaml --optuna.pruner.n_startup_trials 5 --execution_method standalone --execution_type fit --global_seed 42 --trainer_config_file trainer_default_config.yaml --trainer_config.logger_version ${SLURM_ARRAY_TASK_ID} --model_config_file EUSIPCO_signals_spd_preserving_network_prevectorized_length_21_config.yaml --datamodule_config_file Vectorized_SPD_matrices_from_EEG_MASS_dataset_EUSIPCO_signals_length_21_config.yaml --datamodule_config.batch_size 32 --datamodule_config.cross_validation_fold_index 11
 
 
 

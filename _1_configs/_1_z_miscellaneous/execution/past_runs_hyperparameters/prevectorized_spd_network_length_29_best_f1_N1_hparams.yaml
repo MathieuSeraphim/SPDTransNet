@@ -51,7 +51,7 @@ model:
 datamodule:
   class_path: _3_data_management._3_2_data_modules.SPD_matrices_from_EEG_signals.VectorizedSPDFromEEGDataModule.VectorizedSPDFromEEGDataModule
   init_args:
-    dataset_config_file: Vectorized_SPD_matrices_from_EEG_MASS_dataset_ICASSP_signals_config.yaml
+    dataset_config_file: Vectorized_SPD_matrices_from_EEG_MASS_dataset_EUSIPCO_signals_config.yaml
     batch_size: 16
     cross_validation_fold_index: 11
     extra_epochs_on_each_side: 14
