@@ -73,14 +73,15 @@ a timeseries of $S$ = 30 SPD matrices of size 9 $\times$ 9 over $C$ = 7 channels
 
 | \#  | Model                                                                            | MF1                   | Macro Acc.           | N1 F1                | Valid. metric | Token dim. $d(m)$ | \# Feat. Tokens $t$ |
 |:---:|:--------------------------------------------------------------------------------:|:---------------------:|:--------------------:|:--------------------:|:-------------:|:-----------------:|:-------------------:|
-| 1   | [DeepSleepNet](https://github.com/akaraspt/deepsleepnet)                         |  78.14 $\pm$ 4.12     | 80.05 $\pm$ 3.47     | 53.52 $\pm$ 8.24     | N/A           | N/A               | N/A                 |
-| 2   | [IITNet](https://github.com/gist-ailab/IITNet-official)                          |  78.48 $\pm$ 3.15     | 81.88 $\pm$ 2.89     | 56.01 $\pm$ 6.54     | N/A           | N/A               | N/A                 |
-| 3   | [GraphSleepNet](https://github.com/ziyujia/GraphSleepNet)                        |  75.58 $\pm$ 3.75     | 79.75 $\pm$ 3.41     | 50.80 $\pm$ 8.06     | N/A           | N/A               | N/A                 |
-| 4   | [Dequidt et al.](https://link.springer.com/chapter/10.1007/978-3-031-34344-5_30) |  81.04 $\pm$ 3.26     | 82.59 $\pm$ 3.45     | 58.42 $\pm$ 6.09     | N/A           | N/A               | N/A                 |
-| 5   | [Seraphim et al.](https://lechervy.users.greyc.fr/publi/C/publi_pdf/caip23.pdf)  |  79.78 $\pm$ 4.56     | 81.76 $\pm$ 4.61     | 58.43 $\pm$ 6.41     | MF1           | Concatenation     | 1                   |
-| 6   | SPDTransNet, $L=13$                                                              |  81.06 $\pm$ 3.49     | **84.87** $\pm$ 2.47 | 60.39 $\pm$ 6.77     | MF1           | 351 ($m = 26$)    | 7                   |
-| 7   | SPDTransNet, $L=21$                                                              |  **81.24** $\pm$ 3.29 | 84.40 $\pm$ 2.61     | **60.50** $\pm$ 6.18 | MF1           | 351 ($m = 26$)    | 10                  |
-| 8   | SPDTransNet, $L=29$                                                              |  80.83 $\pm$ 3.40     | 84.29 $\pm$ 2.65     | 60.35 $\pm$ 6.01     | N1 F1         | 351 ($m = 26$)    | 5                   |
+| 1   | SPDTransNet, $L=13$                                                              |  81.06 $\pm$ 3.49     | **84.87** $\pm$ 2.47 | 60.39 $\pm$ 6.77     | MF1           | 351 ($m = 26$)    | 7                   |
+| 2   | SPDTransNet, $L=21$                                                              |  **81.24** $\pm$ 3.29 | 84.40 $\pm$ 2.61     | **60.50** $\pm$ 6.18 | MF1           | 351 ($m = 26$)    | 10                  |
+| 3   | SPDTransNet, $L=29$                                                              |  80.83 $\pm$ 3.40     | 84.29 $\pm$ 2.65     | 60.35 $\pm$ 6.01     | N1 F1         | 351 ($m = 26$)    | 5                   |
+| 4   | Classic MHA                                                                      |  80.82 $\pm$ 3.40     | 84.60 $\pm$ 2.95     | 60.16 $\pm$ 7.20     | MF1           | 351 ($m = 26$)    | 10                  |
+| 5   | [DeepSleepNet](https://github.com/akaraspt/deepsleepnet)                         |  78.14 $\pm$ 4.12     | 80.05 $\pm$ 3.47     | 53.52 $\pm$ 8.24     | N/A           | N/A               | N/A                 |
+| 6   | [IITNet](https://github.com/gist-ailab/IITNet-official)                          |  78.48 $\pm$ 3.15     | 81.88 $\pm$ 2.89     | 56.01 $\pm$ 6.54     | N/A           | N/A               | N/A                 |
+| 7   | [GraphSleepNet](https://github.com/ziyujia/GraphSleepNet)                        |  75.58 $\pm$ 3.75     | 79.75 $\pm$ 3.41     | 50.80 $\pm$ 8.06     | N/A           | N/A               | N/A                 |
+| 8   | [Dequidt et al.](https://link.springer.com/chapter/10.1007/978-3-031-34344-5_30) |  81.04 $\pm$ 3.26     | 82.59 $\pm$ 3.45     | 58.42 $\pm$ 6.09     | N/A           | N/A               | N/A                 |
+| 9   | [Seraphim et al.](https://lechervy.users.greyc.fr/publi/C/publi_pdf/caip23.pdf)  |  79.78 $\pm$ 4.56     | 81.76 $\pm$ 4.61     | 58.43 $\pm$ 6.41     | MF1           | Concatenation     | 1                   |
 
 The reported results for models from the literature differ from those published by the original authors, as we
 re-trained their models using our methodology.  
