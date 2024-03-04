@@ -52,7 +52,7 @@ As alluded to in [the main README file](../../README.md#SPMHA), our Transformer 
 implementation of said encoders, but with the multihead attention replaced with
 [our own SP-MHA](../../_4_models/_4_1_sequence_based_models/intra_element_block/Transformer_based_feature_extraction/layers/StructurePreservingMultiheadAttention.py):
 
-<div style="text-align: center;"><img src="./extras/spd_preserving_multihead_attention_v2.pdf" alt="The SP-MHA architecture" width="300"/></div>
+<div style="text-align: center;"><img src="./extras/spd_preserving_multihead_attention_v2.png" alt="The SP-MHA architecture" width="300"/></div>
 
 More details can be found in the paper.
 
