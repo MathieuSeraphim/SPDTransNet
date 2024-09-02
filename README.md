@@ -101,6 +101,8 @@ This implementation has been build with modularity in mind. However, the approac
 
 Consequently, the code remains modular and adaptable, but might be challenging to reuse in another context.
 
+**EDIT / IMPORTANT:** I recently got contacted by someone who spent *way* too much time trying to reuse my code in another context. I may have been too subtle in the above sentence, so let me be clear: *the structure of this project is an overengineered piece of garbage.* It works well enough as a standalone project, but making it compatible with any decent framework would be a nightmare. I beg of you, if you want to reuse my code, please ***contact me*** by e-mail using the link at the top of this page. You'll save yourself a world of trouble.
+
 <h2 style="text-align: center;">Instructions</h2>
 
 The following instructions should be sufficient to reproduce the results presented in the paper. To expand upon it,
