@@ -6,7 +6,7 @@ This repository is the official implementation of the SPDTransNet model, as pres
 ***Structure-Preserving Transformers for Sequences of SPD Matrices***
 by [Mathieu Seraphim](https://orcid.org/0000-0002-9367-1190), [Alexis Lechervy](https://orcid.org/0000-0002-9441-0187),
 [Florian Yger](https://orcid.org/0000-0002-7182-8062), [Luc Brun](https://orcid.org/0000-0002-1658-0527)
-and [Olivier Etard](https://orcid.org/0000-0003-3661-0233) - available on [arXiv](https://arxiv.org/pdf/2309.07579.pdf).
+and [Olivier Etard](https://orcid.org/0000-0003-3661-0233) - Conference EUSIPCO 2024, France (available on [arXiv](https://arxiv.org/pdf/2309.07579.pdf)).
 
 A previous, non-structure-preserving version of this method was presented in the paper
 ***Temporal Sequences of EEG Covariance Matrices for Automated Sleep Stage Scoring with Attention Mechanisms***
